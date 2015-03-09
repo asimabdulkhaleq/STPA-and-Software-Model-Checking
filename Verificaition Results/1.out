@@ -1,0 +1,98 @@
+/home/asim/tcl/bin/Spin/Src6.4.3/spin -a  model
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -DNOCLAIM -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
+./pan -m5000  
+Pid: 13496
+stopped
+error: max search depth too small
+Interrupted
+
+(Spin Version 6.4.3 -- 16 December 2014)
+Warning: Search not completed
+	+ Partial Order Reduction
+	+ Compression
+	+ Graph Encoding (-DMA=1520)
+
+Full statespace search for:
+	never claim         	- (not selected)
+	assertion violations	+
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	+
+
+State-vector 1368 byte, depth reached 4999, errors: 0
+   800403 states, stored
+   598034 states, matched
+  1398437 transitions (= stored+matched)
+   495016 atomic steps
+
+Stats on memory usage (in Megabytes):
+ 1065.600	equivalent memory usage for states (stored*(State-vector + overhead))
+   70.597	actual memory usage for states (compression: 6.63%)
+  128.000	memory used for hash table (-w24)
+    0.267	memory used for DFS stack (-m5000)
+    2.363	other (proc and chan stacks)
+  201.550	total actual memory usage
+
+
+nr of templates: [ 0:globals 1:chans 2:procs ]
+collapse counts: [ 0:50034 3:33 4:33 5:7 6:646 7:1975 8:6065 9:47 10:7 11:413 12:4 ]
+
+pan: elapsed time 116 seconds
+pan: rate 6873.9523 states/second
+To replay the error-trail, goto Simulate/Replay and select "Run"
+/home/asim/tcl/bin/Spin/Src6.4.3/spin -a  model
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
+./pan -m5000   -N never_0
+Pid: 13544
+warning: only one claim defined, -N ignored
+warning: never claim + accept labels requires -a flag to fully verify
+warning: for p.o. reduction to be valid the never claim must be stutter-invariant
+(never claims generated from LTL formulae are stutter-invariant)
+Depth=    4922 States=    1e+06 Transitions= 1.62e+06 Nodes=  107871 Memory=   202.527	t=      164 R=   6e+03
+Depth=    4922 States=    2e+06 Transitions= 3.25e+06 Nodes=  198850 Memory=   266.004	t=      330 R=   6e+03
+Depth=    4922 States=    3e+06 Transitions= 4.87e+06 Nodes=  294221 Memory=   332.410	t=      490 R=   6e+03
+Depth=    4922 States=    4e+06 Transitions= 6.49e+06 Nodes=  386479 Memory=   396.863	t=      661 R=   6e+03
+Depth=    4922 States=    5e+06 Transitions= 8.12e+06 Nodes=  481052 Memory=   462.879	t=      845 R=   6e+03
+Depth=    4922 States=    6e+06 Transitions= 9.74e+06 Nodes=  574267 Memory=   527.527	t= 1.04e+03 R=   6e+03
+Depth=    4922 States=    7e+06 Transitions= 1.14e+07 Nodes=  684549 Memory=   605.261	t= 1.23e+03 R=   6e+03
+Depth=    4922 States=    8e+06 Transitions=  1.3e+07 Nodes=  797244 Memory=   684.558	t= 1.42e+03 R=   6e+03
+Depth=    4922 States=    9e+06 Transitions= 1.46e+07 Nodes=  910869 Memory=   763.855	t=  1.6e+03 R=   6e+03
+Depth=    4922 States=    1e+07 Transitions= 1.62e+07 Nodes= 1023396 Memory=   842.957	t= 1.79e+03 R=   6e+03
+Depth=    4922 States=  1.1e+07 Transitions= 1.78e+07 Nodes= 1149776 Memory=   929.089	t= 1.98e+03 R=   6e+03
+stopped
+Interrupted
+
+(Spin Version 6.4.3 -- 16 December 2014)
+Warning: Search not completed
+	+ Partial Order Reduction
+	+ Compression
+	+ Graph Encoding (-DMA=1520)
+
+Full statespace search for:
+	never claim         	+ (never_0)
+	assertion violations	+ (if within scope of claim)
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	- (disabled by never claim)
+
+State-vector 1376 byte, depth reached 4922, errors: 0
+ 11375621 states, stored
+  6985159 states, matched
+ 18360780 transitions (= stored+matched)
+  3027627 atomic steps
+
+Stats on memory usage (in Megabytes):
+15231.487	equivalent memory usage for states (stored*(State-vector + overhead))
+  833.478	actual memory usage for states (compression: 5.47%)
+  128.000	memory used for hash table (-w24)
+    0.267	memory used for DFS stack (-m5000)
+    1.358	memory lost to fragmentation
+  962.097	total actual memory usage
+
+
+nr of templates: [ 0:globals 1:chans 2:procs ]
+collapse counts: [ 0:641325 2:3 3:33 4:33 5:13 6:142 7:304 8:35769 9:45 10:7 11:314 12:4 ]
+
+pan: elapsed time 2.05e+03 seconds
+pan: rate 5558.4922 states/second
+To replay the error-trail, goto Simulate/Replay and select "Run"
+
+

@@ -1,0 +1,4607 @@
+#define rand	pan_rand
+#define pthread_equal(a,b)	((a)==(b))
+#if defined(HAS_CODE) && defined(VERBOSE)
+	#ifdef BFS_PAR
+		bfs_printf("Pr: %d Tr: %d\n", II, t->forw);
+	#else
+		cpu_printf("Pr: %d Tr: %d\n", II, t->forw);
+	#endif
+#endif
+	switch (t->forw) {
+	default: Uerror("bad forward move");
+	case 0:	/* if without executable clauses */
+		continue;
+	case 1: /* generic 'goto' or 'skip' */
+		IfNotBlocked
+		_m = 3; goto P999;
+	case 2: /* generic 'else' */
+		IfNotBlocked
+		if (trpt->o_pm&1) continue;
+		_m = 3; goto P999;
+
+		 /* PROC p_main */
+	case 3: // STATE 1 - model:529 - [(((lck_p_initACCVehicle==0)&&empty(req_cll_p_initACCVehicle)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][1] = 1;
+		if (!(((((int)now.lck_p_initACCVehicle)==0)&&(q_len(now.req_cll_p_initACCVehicle)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 4: // STATE 2 - model:529 - [req_cll_p_initACCVehicle!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][2] = 1;
+		if (q_full(now.req_cll_p_initACCVehicle))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_initACCVehicle);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_initACCVehicle, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_initACCVehicle)) { boq = now.req_cll_p_initACCVehicle; };
+		_m = 2; goto P999; /* 0 */
+	case 5: // STATE 3 - model:530 - [exc_cll_p_initACCVehicle!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][3] = 1;
+		if (q_full(now.exc_cll_p_initACCVehicle))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_initACCVehicle);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_initACCVehicle, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_initACCVehicle)) { boq = now.exc_cll_p_initACCVehicle; };
+		_m = 2; goto P999; /* 0 */
+	case 6: // STATE 5 - model:532 - [ret_p_initACCVehicle?eval(_pid)] (0:0:0 - 1)
+		reached[7][5] = 1;
+		if (q_zero(now.ret_p_initACCVehicle))
+		{	if (boq != now.ret_p_initACCVehicle) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_initACCVehicle) == 0) continue;
+
+		XX=1;
+		if (((int)((P7 *)this)->_pid) != qrecv(now.ret_p_initACCVehicle, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_initACCVehicle-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_initACCVehicle, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_initACCVehicle);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_initACCVehicle))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 7: // STATE 6 - model:533 - [{c_code204}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][6] = 1;
+		/* c_code204 */
+		{ 
+		sv_save(); ; now.lck_p_initACCVehicle_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 8: // STATE 7 - model:535 - [(((lck_p_initTargetVehicle==0)&&empty(req_cll_p_initTargetVehicle)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][7] = 1;
+		if (!(((((int)now.lck_p_initTargetVehicle)==0)&&(q_len(now.req_cll_p_initTargetVehicle)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 9: // STATE 8 - model:535 - [req_cll_p_initTargetVehicle!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][8] = 1;
+		if (q_full(now.req_cll_p_initTargetVehicle))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_initTargetVehicle);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_initTargetVehicle, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_initTargetVehicle)) { boq = now.req_cll_p_initTargetVehicle; };
+		_m = 2; goto P999; /* 0 */
+	case 10: // STATE 9 - model:536 - [exc_cll_p_initTargetVehicle!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][9] = 1;
+		if (q_full(now.exc_cll_p_initTargetVehicle))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_initTargetVehicle);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_initTargetVehicle, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_initTargetVehicle)) { boq = now.exc_cll_p_initTargetVehicle; };
+		_m = 2; goto P999; /* 0 */
+	case 11: // STATE 11 - model:538 - [ret_p_initTargetVehicle?eval(_pid)] (0:0:0 - 1)
+		reached[7][11] = 1;
+		if (q_zero(now.ret_p_initTargetVehicle))
+		{	if (boq != now.ret_p_initTargetVehicle) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_initTargetVehicle) == 0) continue;
+
+		XX=1;
+		if (((int)((P7 *)this)->_pid) != qrecv(now.ret_p_initTargetVehicle, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_initTargetVehicle-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_initTargetVehicle, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_initTargetVehicle);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_initTargetVehicle))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 12: // STATE 12 - model:539 - [{c_code205}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][12] = 1;
+		/* c_code205 */
+		{ 
+		sv_save(); ; now.lck_p_initTargetVehicle_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 13: // STATE 13 - model:540 - [{c_code206}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][13] = 1;
+		/* c_code206 */
+		{ 
+		sv_save(); now.accvehicle.name="accVehilce";  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 14: // STATE 14 - model:541 - [{c_code207}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][14] = 1;
+		/* c_code207 */
+		{ 
+		sv_save(); now.targetvehicle.name="targetvehicle";  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 15: // STATE 15 - model:542 - [{c_code208}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][15] = 1;
+		/* c_code208 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.minSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 16: // STATE 16 - model:543 - [{c_code209}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][16] = 1;
+		/* c_code209 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.minSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 17: // STATE 17 - model:545 - [(((lck_p_moveCar==0)&&empty(req_cll_p_moveCar)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][17] = 1;
+		if (!(((((int)now.lck_p_moveCar)==0)&&(q_len(now.req_cll_p_moveCar)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 18: // STATE 18 - model:545 - [req_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][18] = 1;
+		if (q_full(now.req_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_moveCar)) { boq = now.req_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 19: // STATE 19 - model:546 - [exc_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][19] = 1;
+		if (q_full(now.exc_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_moveCar)) { boq = now.exc_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 20: // STATE 21 - model:548 - [ret_p_moveCar?eval(_pid)] (0:0:0 - 1)
+		reached[7][21] = 1;
+		if (q_zero(now.ret_p_moveCar))
+		{	if (boq != now.ret_p_moveCar) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_moveCar) == 0) continue;
+
+		XX=1;
+		if (((int)((P7 *)this)->_pid) != qrecv(now.ret_p_moveCar, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_moveCar-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_moveCar, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_moveCar))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 21: // STATE 22 - model:549 - [{c_code210}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][22] = 1;
+		/* c_code210 */
+		{ 
+		sv_save(); ; now.lck_p_moveCar_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 22: // STATE 23 - model:552 - [({c_code211})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][23] = 1;
+		if (!(( (Pp_main->i<=30) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 23: // STATE 24 - model:554 - [({c_code212})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][24] = 1;
+		if (!(( (now.accvehicle.currentspeed<now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 24: // STATE 25 - model:555 - [{c_code213}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][25] = 1;
+		/* c_code213 */
+		{ 
+		sv_save(); now.accvehicle.accmode=3;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 25: // STATE 26 - model:556 - [{c_code214}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][26] = 1;
+		/* c_code214 */
+		{ 
+		sv_save(); now.accMode=3;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 26: // STATE 27 - model:557 - [{c_code215}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][27] = 1;
+		/* c_code215 */
+		{ 
+		sv_save(); now.targetvehicle.speed=((rand()%100)+(Pp_main->i*2));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 27: // STATE 28 - model:558 - [{c_code216}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][28] = 1;
+		/* c_code216 */
+		{ 
+		sv_save(); now.targetvehicle.distance=(now.targetvehicle.distance+((now.accvehicle.speed/36)/now.targetvehicle.ticksPerSecond));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 28: // STATE 29 - model:560 - [(((lck_p_moveCar==0)&&empty(req_cll_p_moveCar)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][29] = 1;
+		if (!(((((int)now.lck_p_moveCar)==0)&&(q_len(now.req_cll_p_moveCar)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 29: // STATE 30 - model:560 - [req_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][30] = 1;
+		if (q_full(now.req_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_moveCar)) { boq = now.req_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 30: // STATE 31 - model:561 - [exc_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][31] = 1;
+		if (q_full(now.exc_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_moveCar)) { boq = now.exc_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 31: // STATE 33 - model:563 - [ret_p_moveCar?eval(_pid)] (0:0:0 - 1)
+		reached[7][33] = 1;
+		if (q_zero(now.ret_p_moveCar))
+		{	if (boq != now.ret_p_moveCar) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_moveCar) == 0) continue;
+
+		XX=1;
+		if (((int)((P7 *)this)->_pid) != qrecv(now.ret_p_moveCar, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_moveCar-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_moveCar, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_moveCar))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 32: // STATE 34 - model:564 - [{c_code217}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][34] = 1;
+		/* c_code217 */
+		{ 
+		sv_save(); ; now.lck_p_moveCar_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 33: // STATE 35 - model:565 - [({c_code218})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][35] = 1;
+		if (!(( !(now.accvehicle.currentspeed<now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 34: // STATE 36 - model:567 - [({c_code219})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][36] = 1;
+		if (!(( (now.accvehicle.currentspeed==now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 35: // STATE 37 - model:568 - [{c_code220}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][37] = 1;
+		/* c_code220 */
+		{ 
+		sv_save(); now.accvehicle.accmode=2;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 36: // STATE 38 - model:569 - [{c_code221}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][38] = 1;
+		/* c_code221 */
+		{ 
+		sv_save(); now.accMode=2;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 37: // STATE 39 - model:570 - [{c_code222}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][39] = 1;
+		/* c_code222 */
+		{ 
+		sv_save(); now.targetvehicle.speed=(80+(Pp_main->i*2));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 38: // STATE 40 - model:571 - [{c_code223}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][40] = 1;
+		/* c_code223 */
+		{ 
+		sv_save(); now.targetvehicle.distance=(now.targetvehicle.distance+((now.accvehicle.speed/36)/now.targetvehicle.ticksPerSecond));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 39: // STATE 41 - model:573 - [(((lck_p_moveCar==0)&&empty(req_cll_p_moveCar)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][41] = 1;
+		if (!(((((int)now.lck_p_moveCar)==0)&&(q_len(now.req_cll_p_moveCar)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 40: // STATE 42 - model:573 - [req_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][42] = 1;
+		if (q_full(now.req_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_moveCar)) { boq = now.req_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 41: // STATE 43 - model:574 - [exc_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][43] = 1;
+		if (q_full(now.exc_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_moveCar)) { boq = now.exc_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 42: // STATE 45 - model:576 - [ret_p_moveCar?eval(_pid)] (0:0:0 - 1)
+		reached[7][45] = 1;
+		if (q_zero(now.ret_p_moveCar))
+		{	if (boq != now.ret_p_moveCar) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_moveCar) == 0) continue;
+
+		XX=1;
+		if (((int)((P7 *)this)->_pid) != qrecv(now.ret_p_moveCar, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_moveCar-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_moveCar, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_moveCar))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 43: // STATE 46 - model:577 - [{c_code224}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][46] = 1;
+		/* c_code224 */
+		{ 
+		sv_save(); ; now.lck_p_moveCar_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 44: // STATE 47 - model:578 - [({c_code225})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][47] = 1;
+		if (!(( !(now.accvehicle.currentspeed==now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 45: // STATE 48 - model:580 - [({c_code226})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][48] = 1;
+		if (!(( (now.accvehicle.currentspeed>now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 46: // STATE 49 - model:581 - [{c_code227}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][49] = 1;
+		/* c_code227 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.desiredSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 47: // STATE 50 - model:583 - [(((lck_p_moveCar==0)&&empty(req_cll_p_moveCar)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][50] = 1;
+		if (!(((((int)now.lck_p_moveCar)==0)&&(q_len(now.req_cll_p_moveCar)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 48: // STATE 51 - model:583 - [req_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][51] = 1;
+		if (q_full(now.req_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_moveCar)) { boq = now.req_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 49: // STATE 52 - model:584 - [exc_cll_p_moveCar!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][52] = 1;
+		if (q_full(now.exc_cll_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_moveCar, 0, ((int)((P7 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_moveCar)) { boq = now.exc_cll_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+	case 50: // STATE 54 - model:586 - [ret_p_moveCar?eval(_pid)] (0:0:0 - 1)
+		reached[7][54] = 1;
+		if (q_zero(now.ret_p_moveCar))
+		{	if (boq != now.ret_p_moveCar) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_moveCar) == 0) continue;
+
+		XX=1;
+		if (((int)((P7 *)this)->_pid) != qrecv(now.ret_p_moveCar, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_moveCar-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_moveCar, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P7 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_moveCar))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 51: // STATE 55 - model:587 - [{c_code228}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][55] = 1;
+		/* c_code228 */
+		{ 
+		sv_save(); ; now.lck_p_moveCar_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 52: // STATE 56 - model:588 - [({c_code229})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][56] = 1;
+		if (!(( !(now.accvehicle.currentspeed>now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 53: // STATE 63 - model:592 - [{c_code230}] (0:0:0 - 7)
+		IfNotBlocked
+		reached[7][63] = 1;
+		/* c_code230 */
+		{ 
+		sv_save(); Pp_main->i++;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 54: // STATE 65 - model:594 - [({c_code231})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][65] = 1;
+		if (!(( !(Pp_main->i<=30) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 55: // STATE 70 - model:596 - [{c_code232}] (0:0:0 - 3)
+		IfNotBlocked
+		reached[7][70] = 1;
+		/* c_code232 */
+		{ 
+		sv_save(); getchar();  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 56: // STATE 71 - model:597 - [(!(lck_p_main_ret))] (74:0:1 - 1)
+		IfNotBlocked
+		reached[7][71] = 1;
+		if (!( !(((int)now.lck_p_main_ret))))
+			continue;
+		/* merge: lck_p_main_ret = 1(0, 72, 74) */
+		reached[7][72] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_main_ret);
+		now.lck_p_main_ret = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_main_ret", ((int)now.lck_p_main_ret));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 57: // STATE 74 - model:598 - [{c_code233}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][74] = 1;
+		/* c_code233 */
+		{ 
+		sv_save(); now.res_p_main = (long) 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 58: // STATE 77 - model:600 - [-end-] (0:0:0 - 1)
+		IfNotBlocked
+		reached[7][77] = 1;
+		if (!delproc(1, II)) continue;
+		_m = 3; goto P999; /* 0 */
+
+		 /* PROC p_moveCar */
+	case 59: // STATE 1 - model:402 - [((nempty(req_cll_p_moveCar)&&!(lck_p_moveCar)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[6][1] = 1;
+		if (!(((q_len(now.req_cll_p_moveCar)>0)&& !(((int)now.lck_p_moveCar)))))
+			continue;
+		/* merge: lck_p_moveCar = 1(0, 2, 3) */
+		reached[6][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_moveCar);
+		now.lck_p_moveCar = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_moveCar", ((int)now.lck_p_moveCar));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 60: // STATE 3 - model:403 - [req_cll_p_moveCar?lck_id] (0:0:1 - 1)
+		reached[6][3] = 1;
+		if (q_zero(now.req_cll_p_moveCar))
+		{	if (boq != now.req_cll_p_moveCar) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_moveCar) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P6 *)this)->lck_id);
+		;
+		((P6 *)this)->lck_id = qrecv(now.req_cll_p_moveCar, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_moveCar:lck_id", ((int)((P6 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_moveCar))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 61: // STATE 4 - model:403 - [exc_cll_p_moveCar?eval(lck_id)] (16:0:1 - 1)
+		reached[6][4] = 1;
+		if (q_zero(now.exc_cll_p_moveCar))
+		{	if (boq != now.exc_cll_p_moveCar) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_moveCar) == 0) continue;
+
+		XX=1;
+		if (((int)((P6 *)this)->lck_id) != qrecv(now.exc_cll_p_moveCar, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_moveCar-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_moveCar, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_moveCar))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		/* merge: lck_p_moveCar = 0(0, 5, 16) */
+		reached[6][5] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_moveCar);
+		now.lck_p_moveCar = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_moveCar", ((int)now.lck_p_moveCar));
+#endif
+		;
+		_m = 4; goto P999; /* 1 */
+	case 62: // STATE 7 - model:407 - [({c_code142})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][7] = 1;
+		if (!(( (now.accvehicle.brakepedal>0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 63: // STATE 8 - model:408 - [{c_code143}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][8] = 1;
+		/* c_code143 */
+		{ 
+		sv_save(); now.accvehicle.brakepedal=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 64: // STATE 9 - model:409 - [({c_code144})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][9] = 1;
+		if (!(( !(now.accvehicle.brakepedal>0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 65: // STATE 10 - model:411 - [({c_code145})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][10] = 1;
+		if (!(( (now.accvehicle.throttle<(now.accvehicle.maxThrottle-1)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 66: // STATE 11 - model:412 - [{c_code146}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][11] = 1;
+		/* c_code146 */
+		{ 
+		sv_save(); now.accvehicle.throttle+=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 67: // STATE 12 - model:413 - [({c_code147})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][12] = 1;
+		if (!(( !(now.accvehicle.throttle<(now.accvehicle.maxThrottle-1)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 68: // STATE 13 - model:414 - [{c_code148}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][13] = 1;
+		/* c_code148 */
+		{ 
+		sv_save(); now.accvehicle.throttle=now.accvehicle.maxThrottle;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 69: // STATE 18 - model:417 - [{c_code149}] (0:0:0 - 5)
+		IfNotBlocked
+		reached[6][18] = 1;
+		/* c_code149 */
+		{ 
+		sv_save(); now.accmode=now.accvehicle.accmode;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 70: // STATE 19 - model:419 - [({c_code150})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][19] = 1;
+		if (!(( (now.accmode==2) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 71: // STATE 20 - model:421 - [(((lck_p_speedController==0)&&empty(req_cll_p_speedController)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][20] = 1;
+		if (!(((((int)now.lck_p_speedController)==0)&&(q_len(now.req_cll_p_speedController)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 72: // STATE 21 - model:421 - [req_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][21] = 1;
+		if (q_full(now.req_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_speedController)) { boq = now.req_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 73: // STATE 22 - model:422 - [{c_code151}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][22] = 1;
+		/* c_code151 */
+		{ 
+		sv_save(); now.par0_speedController = now.accvehicle.currentspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 74: // STATE 23 - model:423 - [{c_code152}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][23] = 1;
+		/* c_code152 */
+		{ 
+		sv_save(); now.par1_speedController = now.targetvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 75: // STATE 24 - model:424 - [{c_code153}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][24] = 1;
+		/* c_code153 */
+		{ 
+		sv_save(); now.par2_speedController = now.targetvehicle.distance;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 76: // STATE 25 - model:425 - [exc_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][25] = 1;
+		if (q_full(now.exc_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_speedController)) { boq = now.exc_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 77: // STATE 27 - model:427 - [ret_p_speedController?eval(_pid)] (0:0:0 - 1)
+		reached[6][27] = 1;
+		if (q_zero(now.ret_p_speedController))
+		{	if (boq != now.ret_p_speedController) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_speedController) == 0) continue;
+
+		XX=1;
+		if (((int)((P6 *)this)->_pid) != qrecv(now.ret_p_speedController, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_speedController-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_speedController, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_speedController))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 78: // STATE 28 - model:428 - [{c_code154}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][28] = 1;
+		/* c_code154 */
+		{ 
+		sv_save(); now.accvehicle.speed+= now.res_p_speedController; now.lck_p_speedController_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 79: // STATE 29 - model:430 - [({c_code155})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][29] = 1;
+		if (!(( (now.accvehicle.speed>now.accvehicle.maxSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 80: // STATE 30 - model:431 - [{c_code156}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][30] = 1;
+		/* c_code156 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.accvehicle.maxSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 81: // STATE 31 - model:432 - [({c_code157})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][31] = 1;
+		if (!(( !(now.accvehicle.speed>now.accvehicle.maxSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 82: // STATE 32 - model:434 - [({c_code158})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][32] = 1;
+		if (!(( (now.accvehicle.speed<now.minSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 83: // STATE 33 - model:435 - [{c_code159}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][33] = 1;
+		/* c_code159 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.minSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 84: // STATE 34 - model:436 - [({c_code160})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][34] = 1;
+		if (!(( !(now.accvehicle.speed<now.minSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 85: // STATE 39 - model:439 - [{c_code161}] (0:0:0 - 5)
+		IfNotBlocked
+		reached[6][39] = 1;
+		/* c_code161 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.accvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 86: // STATE 40 - model:441 - [({c_code162})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][40] = 1;
+		if (!(( 1 == now.accOperation )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 87: // STATE 41 - model:442 - [{c_code163}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][41] = 1;
+		/* c_code163 */
+		{ 
+		sv_save(); now.accvehicle.speed=(now.accvehicle.speed+now.accelerationRatio);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 88: // STATE 42 - model:443 - [{c_code164}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][42] = 1;
+		/* c_code164 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.accvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 89: // STATE 43 - model:445 - [(((lck_p_speedController==0)&&empty(req_cll_p_speedController)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][43] = 1;
+		if (!(((((int)now.lck_p_speedController)==0)&&(q_len(now.req_cll_p_speedController)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 90: // STATE 44 - model:445 - [req_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][44] = 1;
+		if (q_full(now.req_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_speedController)) { boq = now.req_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 91: // STATE 45 - model:446 - [{c_code165}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][45] = 1;
+		/* c_code165 */
+		{ 
+		sv_save(); now.par0_speedController = now.accvehicle.currentspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 92: // STATE 46 - model:447 - [{c_code166}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][46] = 1;
+		/* c_code166 */
+		{ 
+		sv_save(); now.par1_speedController = now.targetvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 93: // STATE 47 - model:448 - [{c_code167}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][47] = 1;
+		/* c_code167 */
+		{ 
+		sv_save(); now.par2_speedController = now.targetvehicle.distance;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 94: // STATE 48 - model:449 - [exc_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][48] = 1;
+		if (q_full(now.exc_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_speedController)) { boq = now.exc_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 95: // STATE 50 - model:451 - [ret_p_speedController?eval(_pid)] (0:0:0 - 1)
+		reached[6][50] = 1;
+		if (q_zero(now.ret_p_speedController))
+		{	if (boq != now.ret_p_speedController) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_speedController) == 0) continue;
+
+		XX=1;
+		if (((int)((P6 *)this)->_pid) != qrecv(now.ret_p_speedController, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_speedController-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_speedController, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_speedController))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 96: // STATE 51 - model:452 - [{c_code168}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][51] = 1;
+		/* c_code168 */
+		{ 
+		sv_save(); now.accvehicle.speed+= now.res_p_speedController; now.lck_p_speedController_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 97: // STATE 54 - model:455 - [({c_code169})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][54] = 1;
+		if (!(( 2 == now.accOperation )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 98: // STATE 55 - model:456 - [{c_code170}] (0:0:0 - 2)
+		IfNotBlocked
+		reached[6][55] = 1;
+		/* c_code170 */
+		{ 
+		sv_save(); now.accvehicle.speed=(now.accvehicle.speed-now.deccelerateRatio);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 99: // STATE 56 - model:457 - [{c_code171}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][56] = 1;
+		/* c_code171 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.accvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 100: // STATE 57 - model:459 - [(((lck_p_speedController==0)&&empty(req_cll_p_speedController)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][57] = 1;
+		if (!(((((int)now.lck_p_speedController)==0)&&(q_len(now.req_cll_p_speedController)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 101: // STATE 58 - model:459 - [req_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][58] = 1;
+		if (q_full(now.req_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_speedController)) { boq = now.req_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 102: // STATE 59 - model:460 - [{c_code172}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][59] = 1;
+		/* c_code172 */
+		{ 
+		sv_save(); now.par0_speedController = now.accvehicle.currentspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 103: // STATE 60 - model:461 - [{c_code173}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][60] = 1;
+		/* c_code173 */
+		{ 
+		sv_save(); now.par1_speedController = now.targetvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 104: // STATE 61 - model:462 - [{c_code174}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][61] = 1;
+		/* c_code174 */
+		{ 
+		sv_save(); now.par2_speedController = now.targetvehicle.distance;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 105: // STATE 62 - model:463 - [exc_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][62] = 1;
+		if (q_full(now.exc_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_speedController)) { boq = now.exc_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 106: // STATE 64 - model:465 - [ret_p_speedController?eval(_pid)] (0:0:0 - 1)
+		reached[6][64] = 1;
+		if (q_zero(now.ret_p_speedController))
+		{	if (boq != now.ret_p_speedController) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_speedController) == 0) continue;
+
+		XX=1;
+		if (((int)((P6 *)this)->_pid) != qrecv(now.ret_p_speedController, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_speedController-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_speedController, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_speedController))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 107: // STATE 65 - model:466 - [{c_code175}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][65] = 1;
+		/* c_code175 */
+		{ 
+		sv_save(); now.accvehicle.speed-= now.res_p_speedController; now.lck_p_speedController_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 108: // STATE 68 - model:469 - [({c_code176})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][68] = 1;
+		if (!(( 3 == now.accOperation )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 109: // STATE 69 - model:471 - [{c_code177}] (0:0:0 - 2)
+		IfNotBlocked
+		reached[6][69] = 1;
+		/* c_code177 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.desiredSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 110: // STATE 70 - model:473 - [(((lck_p_speedController==0)&&empty(req_cll_p_speedController)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][70] = 1;
+		if (!(((((int)now.lck_p_speedController)==0)&&(q_len(now.req_cll_p_speedController)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 111: // STATE 71 - model:473 - [req_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][71] = 1;
+		if (q_full(now.req_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_speedController)) { boq = now.req_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 112: // STATE 72 - model:474 - [{c_code178}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][72] = 1;
+		/* c_code178 */
+		{ 
+		sv_save(); now.par0_speedController = now.accvehicle.currentspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 113: // STATE 73 - model:475 - [{c_code179}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][73] = 1;
+		/* c_code179 */
+		{ 
+		sv_save(); now.par1_speedController = now.targetvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 114: // STATE 74 - model:476 - [{c_code180}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][74] = 1;
+		/* c_code180 */
+		{ 
+		sv_save(); now.par2_speedController = now.targetvehicle.distance;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 115: // STATE 75 - model:477 - [exc_cll_p_speedController!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][75] = 1;
+		if (q_full(now.exc_cll_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_speedController, 0, ((int)((P6 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_speedController)) { boq = now.exc_cll_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+	case 116: // STATE 77 - model:479 - [ret_p_speedController?eval(_pid)] (0:0:0 - 1)
+		reached[6][77] = 1;
+		if (q_zero(now.ret_p_speedController))
+		{	if (boq != now.ret_p_speedController) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_speedController) == 0) continue;
+
+		XX=1;
+		if (((int)((P6 *)this)->_pid) != qrecv(now.ret_p_speedController, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_speedController-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_speedController, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_speedController))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 117: // STATE 78 - model:480 - [{c_code181}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][78] = 1;
+		/* c_code181 */
+		{ 
+		sv_save(); now.accvehicle.speed+= now.res_p_speedController; now.lck_p_speedController_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 118: // STATE 87 - model:486 - [({c_code182})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][87] = 1;
+		if (!(( (now.accvehicle.speed>now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 119: // STATE 88 - model:487 - [{c_code183}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][88] = 1;
+		/* c_code183 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.desiredSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 120: // STATE 89 - model:488 - [({c_code184})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][89] = 1;
+		if (!(( !(now.accvehicle.speed>now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 121: // STATE 90 - model:490 - [({c_code185})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][90] = 1;
+		if (!(( (now.accvehicle.speed<0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 122: // STATE 91 - model:491 - [{c_code186}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][91] = 1;
+		/* c_code186 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.minSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 123: // STATE 92 - model:492 - [({c_code187})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][92] = 1;
+		if (!(( !(now.accvehicle.speed<0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 124: // STATE 97 - model:495 - [({c_code188})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][97] = 1;
+		if (!(( !(now.accmode==2) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 125: // STATE 98 - model:496 - [{c_code189}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][98] = 1;
+		/* c_code189 */
+		{ 
+		sv_save(); now.accvehicle.speed=((now.accvehicle.speed+(((now.accvehicle.throttle-(now.accvehicle.speed/now.accvehicle.airResistance))-(2*now.accvehicle.brakepedal))/now.accvehicle.ticksPerSecond))*2);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 126: // STATE 99 - model:498 - [({c_code190})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][99] = 1;
+		if (!(( (now.accvehicle.speed>now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 127: // STATE 100 - model:499 - [{c_code191}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][100] = 1;
+		/* c_code191 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.desiredSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 128: // STATE 101 - model:500 - [({c_code192})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][101] = 1;
+		if (!(( !(now.accvehicle.speed>now.desiredSpeed) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 129: // STATE 102 - model:502 - [({c_code193})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][102] = 1;
+		if (!(( (now.accvehicle.speed<0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 130: // STATE 103 - model:503 - [{c_code194}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][103] = 1;
+		/* c_code194 */
+		{ 
+		sv_save(); now.accvehicle.speed=now.minSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 131: // STATE 104 - model:504 - [({c_code195})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][104] = 1;
+		if (!(( !(now.accvehicle.speed<0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 132: // STATE 109 - model:507 - [{c_code196}] (0:0:0 - 5)
+		IfNotBlocked
+		reached[6][109] = 1;
+		/* c_code196 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=now.accvehicle.speed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 133: // STATE 110 - model:509 - [({c_code197})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][110] = 1;
+		if (!(( (now.accvehicle.throttle>0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 134: // STATE 111 - model:510 - [{c_code198}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][111] = 1;
+		/* c_code198 */
+		{ 
+		sv_save(); now.accvehicle.throttle-=(0.5/now.accvehicle.ticksPerSecond);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 135: // STATE 112 - model:511 - [({c_code199})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][112] = 1;
+		if (!(( !(now.accvehicle.throttle>0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 136: // STATE 117 - model:515 - [({c_code200})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][117] = 1;
+		if (!(( (now.accvehicle.currentspeed<25) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 137: // STATE 118 - model:516 - [{c_code201}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][118] = 1;
+		/* c_code201 */
+		{ 
+		sv_save(); now.accvehicle.accmode=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 138: // STATE 119 - model:517 - [{c_code202}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][119] = 1;
+		/* c_code202 */
+		{ 
+		sv_save(); now.accMode=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 139: // STATE 120 - model:518 - [({c_code203})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][120] = 1;
+		if (!(( !(now.accvehicle.currentspeed<25) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 140: // STATE 124 - model:521 - [ret_p_moveCar!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[6][124] = 1;
+		if (q_full(now.ret_p_moveCar))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_moveCar);
+		sprintf(simtmp, "%d", ((int)((P6 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_moveCar, 0, ((int)((P6 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_moveCar)) { boq = now.ret_p_moveCar; };
+		_m = 2; goto P999; /* 0 */
+
+		 /* PROC p_speedController */
+	case 141: // STATE 1 - model:322 - [((nempty(req_cll_p_speedController)&&!(lck_p_speedController)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[5][1] = 1;
+		if (!(((q_len(now.req_cll_p_speedController)>0)&& !(((int)now.lck_p_speedController)))))
+			continue;
+		/* merge: lck_p_speedController = 1(0, 2, 3) */
+		reached[5][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_speedController);
+		now.lck_p_speedController = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_speedController", ((int)now.lck_p_speedController));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 142: // STATE 3 - model:323 - [req_cll_p_speedController?lck_id] (0:0:1 - 1)
+		reached[5][3] = 1;
+		if (q_zero(now.req_cll_p_speedController))
+		{	if (boq != now.req_cll_p_speedController) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_speedController) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P5 *)this)->lck_id);
+		;
+		((P5 *)this)->lck_id = qrecv(now.req_cll_p_speedController, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_speedController:lck_id", ((int)((P5 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_speedController))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 143: // STATE 4 - model:323 - [exc_cll_p_speedController?eval(lck_id)] (0:0:0 - 1)
+		reached[5][4] = 1;
+		if (q_zero(now.exc_cll_p_speedController))
+		{	if (boq != now.exc_cll_p_speedController) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_speedController) == 0) continue;
+
+		XX=1;
+		if (((int)((P5 *)this)->lck_id) != qrecv(now.exc_cll_p_speedController, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_speedController-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_speedController, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_speedController))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 144: // STATE 5 - model:324 - [{c_code101}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][5] = 1;
+		/* c_code101 */
+		{ 
+		sv_save(); Pp_speedController->frontDistance = now.par2_speedController;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 145: // STATE 6 - model:325 - [{c_code102}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][6] = 1;
+		/* c_code102 */
+		{ 
+		sv_save(); Pp_speedController->frontSpeed = now.par1_speedController;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 146: // STATE 7 - model:326 - [{c_code103}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][7] = 1;
+		/* c_code103 */
+		{ 
+		sv_save(); Pp_speedController->currentSpeed = now.par0_speedController;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 147: // STATE 8 - model:327 - [lck_p_speedController = 0] (0:0:1 - 1)
+		IfNotBlocked
+		reached[5][8] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_speedController);
+		now.lck_p_speedController = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_speedController", ((int)now.lck_p_speedController));
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 148: // STATE 10 - model:329 - [{c_code104}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][10] = 1;
+		/* c_code104 */
+		{ 
+		sv_save(); Pp_speedController->deltaX=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 149: // STATE 11 - model:330 - [{c_code105}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][11] = 1;
+		/* c_code105 */
+		{ 
+		sv_save(); Pp_speedController->targetSpeed=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 150: // STATE 12 - model:331 - [{c_code106}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][12] = 1;
+		/* c_code106 */
+		{ 
+		sv_save(); Pp_speedController->setSpeed=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 151: // STATE 13 - model:332 - [{c_code107}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][13] = 1;
+		/* c_code107 */
+		{ 
+		sv_save(); Pp_speedController->speed=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 152: // STATE 14 - model:334 - [({c_code108})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][14] = 1;
+		if (!(( (Pp_speedController->currentSpeed==0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 153: // STATE 15 - model:335 - [{c_code109}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][15] = 1;
+		/* c_code109 */
+		{ 
+		sv_save(); Pp_speedController->currentSpeed=now.minSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 154: // STATE 16 - model:336 - [({c_code110})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][16] = 1;
+		if (!(( !(Pp_speedController->currentSpeed==0) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 155: // STATE 19 - model:338 - [{c_code111}] (0:0:0 - 3)
+		IfNotBlocked
+		reached[5][19] = 1;
+		/* c_code111 */
+		{ 
+		sv_save(); Pp_speedController->deltaX=abs((((Pp_speedController->frontSpeed*Pp_speedController->frontSpeed)-(Pp_speedController->currentSpeed*Pp_speedController->currentSpeed))/(2*(-now.accelerationRatio))));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 156: // STATE 20 - model:340 - [({c_code112})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][20] = 1;
+		if (!(( (Pp_speedController->frontDistance<=(now.safeDistance+Pp_speedController->deltaX)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 157: // STATE 21 - model:342 - [({c_code113})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][21] = 1;
+		if (!(( ((Pp_speedController->frontDistance<=(Pp_speedController->deltaX+now.safeDistance))&&(Pp_speedController->frontDistance>=now.safeDistance)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 158: // STATE 22 - model:343 - [{c_code114}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][22] = 1;
+		/* c_code114 */
+		{ 
+		sv_save(); now.accOperation=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 159: // STATE 23 - model:345 - [(((lck_p_adjustcarspeed==0)&&empty(req_cll_p_adjustcarspeed)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][23] = 1;
+		if (!(((((int)now.lck_p_adjustcarspeed)==0)&&(q_len(now.req_cll_p_adjustcarspeed)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 160: // STATE 24 - model:345 - [req_cll_p_adjustcarspeed!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][24] = 1;
+		if (q_full(now.req_cll_p_adjustcarspeed))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_adjustcarspeed, 0, ((int)((P5 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_adjustcarspeed)) { boq = now.req_cll_p_adjustcarspeed; };
+		_m = 2; goto P999; /* 0 */
+	case 161: // STATE 25 - model:346 - [{c_code115}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][25] = 1;
+		/* c_code115 */
+		{ 
+		sv_save(); now.par0_adjustcarspeed = Pp_speedController->currentSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 162: // STATE 26 - model:347 - [{c_code116}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][26] = 1;
+		/* c_code116 */
+		{ 
+		sv_save(); now.par1_adjustcarspeed = Pp_speedController->deltaX;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 163: // STATE 27 - model:348 - [{c_code117}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][27] = 1;
+		/* c_code117 */
+		{ 
+		sv_save(); now.par2_adjustcarspeed = Pp_speedController->frontDistance;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 164: // STATE 28 - model:349 - [exc_cll_p_adjustcarspeed!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][28] = 1;
+		if (q_full(now.exc_cll_p_adjustcarspeed))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_adjustcarspeed, 0, ((int)((P5 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_adjustcarspeed)) { boq = now.exc_cll_p_adjustcarspeed; };
+		_m = 2; goto P999; /* 0 */
+	case 165: // STATE 30 - model:351 - [ret_p_adjustcarspeed?eval(_pid)] (0:0:0 - 1)
+		reached[5][30] = 1;
+		if (q_zero(now.ret_p_adjustcarspeed))
+		{	if (boq != now.ret_p_adjustcarspeed) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_adjustcarspeed) == 0) continue;
+
+		XX=1;
+		if (((int)((P5 *)this)->_pid) != qrecv(now.ret_p_adjustcarspeed, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_adjustcarspeed-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_adjustcarspeed, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_adjustcarspeed))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 166: // STATE 31 - model:352 - [{c_code118}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][31] = 1;
+		/* c_code118 */
+		{ 
+		sv_save(); Pp_speedController->speed= now.res_p_adjustcarspeed; now.lck_p_adjustcarspeed_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 167: // STATE 32 - model:353 - [{c_code119}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][32] = 1;
+		/* c_code119 */
+		{ 
+		sv_save(); Pp_speedController->setSpeed=((Pp_speedController->frontSpeed>Pp_speedController->speed) ? frontSpeed : speed);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 168: // STATE 33 - model:354 - [{c_code120}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][33] = 1;
+		/* c_code120 */
+		{ 
+		sv_save(); now.acclerateSignal=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 169: // STATE 34 - model:355 - [{c_code121}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][34] = 1;
+		/* c_code121 */
+		{ 
+		sv_save(); now.accvehicle.accmode=2;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 170: // STATE 35 - model:356 - [({c_code122})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][35] = 1;
+		if (!(( !((Pp_speedController->frontDistance<=(Pp_speedController->deltaX+now.safeDistance))&&(Pp_speedController->frontDistance>=now.safeDistance)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 171: // STATE 36 - model:358 - [({c_code123})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][36] = 1;
+		if (!(( (Pp_speedController->frontDistance<now.safeDistance) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 172: // STATE 37 - model:359 - [{c_code124}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][37] = 1;
+		/* c_code124 */
+		{ 
+		sv_save(); now.accOperation=2;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 173: // STATE 38 - model:361 - [(((lck_p_adjustcarspeed==0)&&empty(req_cll_p_adjustcarspeed)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][38] = 1;
+		if (!(((((int)now.lck_p_adjustcarspeed)==0)&&(q_len(now.req_cll_p_adjustcarspeed)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 174: // STATE 39 - model:361 - [req_cll_p_adjustcarspeed!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][39] = 1;
+		if (q_full(now.req_cll_p_adjustcarspeed))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_adjustcarspeed, 0, ((int)((P5 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_adjustcarspeed)) { boq = now.req_cll_p_adjustcarspeed; };
+		_m = 2; goto P999; /* 0 */
+	case 175: // STATE 40 - model:362 - [{c_code125}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][40] = 1;
+		/* c_code125 */
+		{ 
+		sv_save(); now.par0_adjustcarspeed = Pp_speedController->currentSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 176: // STATE 41 - model:363 - [{c_code126}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][41] = 1;
+		/* c_code126 */
+		{ 
+		sv_save(); now.par1_adjustcarspeed = Pp_speedController->deltaX;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 177: // STATE 42 - model:364 - [{c_code127}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][42] = 1;
+		/* c_code127 */
+		{ 
+		sv_save(); now.par2_adjustcarspeed = Pp_speedController->frontDistance;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 178: // STATE 43 - model:365 - [exc_cll_p_adjustcarspeed!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][43] = 1;
+		if (q_full(now.exc_cll_p_adjustcarspeed))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_adjustcarspeed, 0, ((int)((P5 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_adjustcarspeed)) { boq = now.exc_cll_p_adjustcarspeed; };
+		_m = 2; goto P999; /* 0 */
+	case 179: // STATE 45 - model:367 - [ret_p_adjustcarspeed?eval(_pid)] (0:0:0 - 1)
+		reached[5][45] = 1;
+		if (q_zero(now.ret_p_adjustcarspeed))
+		{	if (boq != now.ret_p_adjustcarspeed) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_adjustcarspeed) == 0) continue;
+
+		XX=1;
+		if (((int)((P5 *)this)->_pid) != qrecv(now.ret_p_adjustcarspeed, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_adjustcarspeed-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_adjustcarspeed, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_adjustcarspeed))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 180: // STATE 46 - model:368 - [{c_code128}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][46] = 1;
+		/* c_code128 */
+		{ 
+		sv_save(); Pp_speedController->speed= now.res_p_adjustcarspeed; now.lck_p_adjustcarspeed_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 181: // STATE 47 - model:369 - [{c_code129}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][47] = 1;
+		/* c_code129 */
+		{ 
+		sv_save(); Pp_speedController->setSpeed=((now.minSpeed>Pp_speedController->speed) ? now.minSpeed : Pp_speedController->frontDistance->speed);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 182: // STATE 48 - model:370 - [{c_code130}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][48] = 1;
+		/* c_code130 */
+		{ 
+		sv_save(); now.accvehicle.accmode=2;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 183: // STATE 49 - model:371 - [({c_code131})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][49] = 1;
+		if (!(( !(Pp_speedController->frontDistance<now.safeDistance) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 184: // STATE 54 - model:374 - [({c_code132})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][54] = 1;
+		if (!(( !(Pp_speedController->frontDistance<=(now.safeDistance+Pp_speedController->deltaX)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 185: // STATE 55 - model:376 - [({c_code133})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][55] = 1;
+		if (!(( ((Pp_speedController->frontDistance>(now.safeDistance+Pp_speedController->deltaX))&&(Pp_speedController->frontDistance>=now.safeDistance)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 186: // STATE 56 - model:377 - [{c_code134}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][56] = 1;
+		/* c_code134 */
+		{ 
+		sv_save(); now.accOperation=3;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 187: // STATE 57 - model:378 - [{c_code135}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][57] = 1;
+		/* c_code135 */
+		{ 
+		sv_save(); Pp_speedController->setSpeed=(Pp_speedController->currentSpeed+(now.accelerationRatio*now.timegap));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 188: // STATE 58 - model:379 - [{c_code136}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][58] = 1;
+		/* c_code136 */
+		{ 
+		sv_save(); now.accvehicle.accmode=2;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 189: // STATE 59 - model:380 - [({c_code137})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][59] = 1;
+		if (!(( !((Pp_speedController->frontDistance>(now.safeDistance+Pp_speedController->deltaX))&&(Pp_speedController->frontDistance>=now.safeDistance)) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 190: // STATE 64 - model:383 - [{c_code138}] (0:0:0 - 9)
+		IfNotBlocked
+		reached[5][64] = 1;
+		/* c_code138 */
+		{ 
+		sv_save(); Pp_speedController->setSpeed=((now.desiredSpeed<Pp_speedController->setSpeed) ? now.desiredSpeed : Pp_speedController->setSpeed);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 191: // STATE 65 - model:385 - [(((lck_p_calPID==0)&&empty(req_cll_p_calPID)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][65] = 1;
+		if (!(((((int)now.lck_p_calPID)==0)&&(q_len(now.req_cll_p_calPID)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 192: // STATE 66 - model:385 - [req_cll_p_calPID!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][66] = 1;
+		if (q_full(now.req_cll_p_calPID))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_calPID);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_calPID, 0, ((int)((P5 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_calPID)) { boq = now.req_cll_p_calPID; };
+		_m = 2; goto P999; /* 0 */
+	case 193: // STATE 67 - model:386 - [{c_code139}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][67] = 1;
+		/* c_code139 */
+		{ 
+		sv_save(); now.par0_calPID = (Pp_speedController->setSpeed-Pp_speedController->currentSpeed);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 194: // STATE 68 - model:387 - [exc_cll_p_calPID!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][68] = 1;
+		if (q_full(now.exc_cll_p_calPID))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_calPID);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_calPID, 0, ((int)((P5 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_calPID)) { boq = now.exc_cll_p_calPID; };
+		_m = 2; goto P999; /* 0 */
+	case 195: // STATE 70 - model:389 - [ret_p_calPID?eval(_pid)] (0:0:0 - 1)
+		reached[5][70] = 1;
+		if (q_zero(now.ret_p_calPID))
+		{	if (boq != now.ret_p_calPID) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_calPID) == 0) continue;
+
+		XX=1;
+		if (((int)((P5 *)this)->_pid) != qrecv(now.ret_p_calPID, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_calPID-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_calPID, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_calPID);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_calPID))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 196: // STATE 71 - model:390 - [{c_code140}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][71] = 1;
+		/* c_code140 */
+		{ 
+		sv_save(); Pp_speedController->targetSpeed= now.res_p_calPID; now.lck_p_calPID_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 197: // STATE 72 - model:391 - [(!(lck_p_speedController_ret))] (75:0:1 - 1)
+		IfNotBlocked
+		reached[5][72] = 1;
+		if (!( !(((int)now.lck_p_speedController_ret))))
+			continue;
+		/* merge: lck_p_speedController_ret = 1(0, 73, 75) */
+		reached[5][73] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_speedController_ret);
+		now.lck_p_speedController_ret = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_speedController_ret", ((int)now.lck_p_speedController_ret));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 198: // STATE 75 - model:392 - [{c_code141}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][75] = 1;
+		/* c_code141 */
+		{ 
+		sv_save(); now.res_p_speedController = (long) Pp_speedController->targetSpeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 199: // STATE 78 - model:394 - [ret_p_speedController!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[5][78] = 1;
+		if (q_full(now.ret_p_speedController))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_speedController);
+		sprintf(simtmp, "%d", ((int)((P5 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_speedController, 0, ((int)((P5 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_speedController)) { boq = now.ret_p_speedController; };
+		_m = 2; goto P999; /* 0 */
+
+		 /* PROC p_adjustcarspeed */
+	case 200: // STATE 1 - model:288 - [((nempty(req_cll_p_adjustcarspeed)&&!(lck_p_adjustcarspeed)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[4][1] = 1;
+		if (!(((q_len(now.req_cll_p_adjustcarspeed)>0)&& !(((int)now.lck_p_adjustcarspeed)))))
+			continue;
+		/* merge: lck_p_adjustcarspeed = 1(0, 2, 3) */
+		reached[4][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_adjustcarspeed);
+		now.lck_p_adjustcarspeed = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_adjustcarspeed", ((int)now.lck_p_adjustcarspeed));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 201: // STATE 3 - model:289 - [req_cll_p_adjustcarspeed?lck_id] (0:0:1 - 1)
+		reached[4][3] = 1;
+		if (q_zero(now.req_cll_p_adjustcarspeed))
+		{	if (boq != now.req_cll_p_adjustcarspeed) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_adjustcarspeed) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P4 *)this)->lck_id);
+		;
+		((P4 *)this)->lck_id = qrecv(now.req_cll_p_adjustcarspeed, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_adjustcarspeed:lck_id", ((int)((P4 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P4 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_adjustcarspeed))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 202: // STATE 4 - model:289 - [exc_cll_p_adjustcarspeed?eval(lck_id)] (0:0:0 - 1)
+		reached[4][4] = 1;
+		if (q_zero(now.exc_cll_p_adjustcarspeed))
+		{	if (boq != now.exc_cll_p_adjustcarspeed) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_adjustcarspeed) == 0) continue;
+
+		XX=1;
+		if (((int)((P4 *)this)->lck_id) != qrecv(now.exc_cll_p_adjustcarspeed, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_adjustcarspeed-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_adjustcarspeed, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P4 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_adjustcarspeed))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 203: // STATE 5 - model:290 - [{c_code87}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][5] = 1;
+		/* c_code87 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->distance = now.par2_adjustcarspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 204: // STATE 6 - model:291 - [{c_code88}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][6] = 1;
+		/* c_code88 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->deltaX = now.par1_adjustcarspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 205: // STATE 7 - model:292 - [{c_code89}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][7] = 1;
+		/* c_code89 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->vehicleSpeed = now.par0_adjustcarspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 206: // STATE 8 - model:293 - [lck_p_adjustcarspeed = 0] (0:0:1 - 1)
+		IfNotBlocked
+		reached[4][8] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_adjustcarspeed);
+		now.lck_p_adjustcarspeed = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_adjustcarspeed", ((int)now.lck_p_adjustcarspeed));
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 207: // STATE 10 - model:295 - [{c_code90}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][10] = 1;
+		/* c_code90 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->tspeed=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 208: // STATE 11 - model:297 - [({c_code91})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][11] = 1;
+		if (!(( (now.accOperation==1) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 209: // STATE 12 - model:298 - [{c_code92}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][12] = 1;
+		/* c_code92 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->tspeed=sqrt(((Pp_adjustcarspeed->vehicleSpeed*Pp_adjustcarspeed->vehicleSpeed)+abs(((2*(-now.accelerationRatio))*abs(((Pp_adjustcarspeed->deltaX+now.safeDistance)-Pp_adjustcarspeed->distance))))));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 210: // STATE 13 - model:299 - [({c_code93})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][13] = 1;
+		if (!(( !(now.accOperation==1) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 211: // STATE 14 - model:301 - [({c_code94})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][14] = 1;
+		if (!(( (now.accOperation==2) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 212: // STATE 15 - model:302 - [{c_code95}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][15] = 1;
+		/* c_code95 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->tspeed=sqrt(((Pp_adjustcarspeed->vehicleSpeed*Pp_adjustcarspeed->vehicleSpeed)+abs(((2*(-now.accelerationRatio))*abs((now.safeDistance-Pp_adjustcarspeed->distance))))));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 213: // STATE 16 - model:303 - [({c_code96})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][16] = 1;
+		if (!(( !(now.accOperation==2) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 214: // STATE 17 - model:305 - [({c_code97})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][17] = 1;
+		if (!(( (now.accOperation==3) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 215: // STATE 18 - model:306 - [{c_code98}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][18] = 1;
+		/* c_code98 */
+		{ 
+		sv_save(); Pp_adjustcarspeed->tspeed=(Pp_adjustcarspeed->vehicleSpeed+(now.accelerationRatio*now.timegap));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 216: // STATE 19 - model:307 - [({c_code99})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][19] = 1;
+		if (!(( !(now.accOperation==3) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 217: // STATE 26 - model:311 - [(!(lck_p_adjustcarspeed_ret))] (29:0:1 - 1)
+		IfNotBlocked
+		reached[4][26] = 1;
+		if (!( !(((int)now.lck_p_adjustcarspeed_ret))))
+			continue;
+		/* merge: lck_p_adjustcarspeed_ret = 1(0, 27, 29) */
+		reached[4][27] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_adjustcarspeed_ret);
+		now.lck_p_adjustcarspeed_ret = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_adjustcarspeed_ret", ((int)now.lck_p_adjustcarspeed_ret));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 218: // STATE 29 - model:312 - [{c_code100}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][29] = 1;
+		/* c_code100 */
+		{ 
+		sv_save(); now.res_p_adjustcarspeed = (long) Pp_adjustcarspeed->tspeed;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 219: // STATE 32 - model:314 - [ret_p_adjustcarspeed!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[4][32] = 1;
+		if (q_full(now.ret_p_adjustcarspeed))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_adjustcarspeed);
+		sprintf(simtmp, "%d", ((int)((P4 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_adjustcarspeed, 0, ((int)((P4 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_adjustcarspeed)) { boq = now.ret_p_adjustcarspeed; };
+		_m = 2; goto P999; /* 0 */
+
+		 /* PROC p_calPID */
+	case 220: // STATE 1 - model:237 - [((nempty(req_cll_p_calPID)&&!(lck_p_calPID)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[3][1] = 1;
+		if (!(((q_len(now.req_cll_p_calPID)>0)&& !(((int)now.lck_p_calPID)))))
+			continue;
+		/* merge: lck_p_calPID = 1(0, 2, 3) */
+		reached[3][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_calPID);
+		now.lck_p_calPID = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_calPID", ((int)now.lck_p_calPID));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 221: // STATE 3 - model:238 - [req_cll_p_calPID?lck_id] (0:0:1 - 1)
+		reached[3][3] = 1;
+		if (q_zero(now.req_cll_p_calPID))
+		{	if (boq != now.req_cll_p_calPID) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_calPID) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P3 *)this)->lck_id);
+		;
+		((P3 *)this)->lck_id = qrecv(now.req_cll_p_calPID, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_calPID:lck_id", ((int)((P3 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_calPID);
+		sprintf(simtmp, "%d", ((int)((P3 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_calPID))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 222: // STATE 4 - model:238 - [exc_cll_p_calPID?eval(lck_id)] (0:0:0 - 1)
+		reached[3][4] = 1;
+		if (q_zero(now.exc_cll_p_calPID))
+		{	if (boq != now.exc_cll_p_calPID) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_calPID) == 0) continue;
+
+		XX=1;
+		if (((int)((P3 *)this)->lck_id) != qrecv(now.exc_cll_p_calPID, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_calPID-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_calPID, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_calPID);
+		sprintf(simtmp, "%d", ((int)((P3 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_calPID))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 223: // STATE 5 - model:239 - [{c_code61}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][5] = 1;
+		/* c_code61 */
+		{ 
+		sv_save(); Pp_calPID->diff = now.par0_calPID;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 224: // STATE 6 - model:240 - [lck_p_calPID = 0] (0:0:1 - 1)
+		IfNotBlocked
+		reached[3][6] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_calPID);
+		now.lck_p_calPID = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_calPID", ((int)now.lck_p_calPID));
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 225: // STATE 8 - model:242 - [{c_code62}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][8] = 1;
+		/* c_code62 */
+		{ 
+		sv_save(); Pp_calPID->epsilon=0.01;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 226: // STATE 9 - model:243 - [{c_code63}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][9] = 1;
+		/* c_code63 */
+		{ 
+		sv_save(); Pp_calPID->deltatime=0.01;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 227: // STATE 10 - model:244 - [{c_code64}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][10] = 1;
+		/* c_code64 */
+		{ 
+		sv_save(); Pp_calPID->maxvalue=200;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 228: // STATE 11 - model:245 - [{c_code65}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][11] = 1;
+		/* c_code65 */
+		{ 
+		sv_save(); Pp_calPID->minvalue=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 229: // STATE 12 - model:246 - [{c_code66}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][12] = 1;
+		/* c_code66 */
+		{ 
+		sv_save(); Pp_calPID->kp=2000;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 230: // STATE 13 - model:247 - [{c_code67}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][13] = 1;
+		/* c_code67 */
+		{ 
+		sv_save(); Pp_calPID->ki=80;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 231: // STATE 14 - model:248 - [{c_code68}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][14] = 1;
+		/* c_code68 */
+		{ 
+		sv_save(); Pp_calPID->kd=80;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 232: // STATE 15 - model:249 - [{c_code69}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][15] = 1;
+		/* c_code69 */
+		{ 
+		sv_save(); Pp_calPID->preverror=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 233: // STATE 16 - model:250 - [{c_code70}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][16] = 1;
+		/* c_code70 */
+		{ 
+		sv_save(); Pp_calPID->integralgain=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 234: // STATE 17 - model:251 - [{c_code71}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][17] = 1;
+		/* c_code71 */
+		{ 
+		sv_save(); Pp_calPID->error=Pp_calPID->diff;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 235: // STATE 18 - model:253 - [({c_code72})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][18] = 1;
+		if (!(( (Pp_calPID->error>Pp_calPID->epsilon) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 236: // STATE 19 - model:254 - [{c_code73}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][19] = 1;
+		/* c_code73 */
+		{ 
+		sv_save(); Pp_calPID->integralgain+=(Pp_calPID->error*Pp_calPID->deltatime);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 237: // STATE 20 - model:255 - [({c_code74})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][20] = 1;
+		if (!(( !(Pp_calPID->error>Pp_calPID->epsilon) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 238: // STATE 23 - model:257 - [{c_code75}] (0:0:0 - 3)
+		IfNotBlocked
+		reached[3][23] = 1;
+		/* c_code75 */
+		{ 
+		sv_save(); Pp_calPID->derivativegain+=((Pp_calPID->error-Pp_calPID->preverror)/Pp_calPID->deltatime);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 239: // STATE 24 - model:258 - [{c_code76}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][24] = 1;
+		/* c_code76 */
+		{ 
+		sv_save(); Pp_calPID->output=(((Pp_calPID->kp*Pp_calPID->error)+(Pp_calPID->ki*Pp_calPID->integralgain))+(Pp_calPID->kd*Pp_calPID->derivativegain));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 240: // STATE 25 - model:260 - [({c_code77})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][25] = 1;
+		if (!(( (Pp_calPID->output>Pp_calPID->maxvalue) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 241: // STATE 26 - model:261 - [{c_code78}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][26] = 1;
+		/* c_code78 */
+		{ 
+		sv_save(); Pp_calPID->output=Pp_calPID->maxvalue;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 242: // STATE 27 - model:262 - [({c_code79})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][27] = 1;
+		if (!(( !(Pp_calPID->output>Pp_calPID->maxvalue) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 243: // STATE 28 - model:264 - [({c_code80})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][28] = 1;
+		if (!(( (Pp_calPID->output<Pp_calPID->minvalue) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 244: // STATE 29 - model:265 - [{c_code81}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][29] = 1;
+		/* c_code81 */
+		{ 
+		sv_save(); Pp_calPID->output=Pp_calPID->minvalue;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 245: // STATE 30 - model:266 - [({c_code82})] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][30] = 1;
+		if (!(( !(Pp_calPID->output<Pp_calPID->minvalue) )))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 246: // STATE 35 - model:270 - [(((lck_p_transforfunction==0)&&empty(req_cll_p_transforfunction)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][35] = 1;
+		if (!(((((int)now.lck_p_transforfunction)==0)&&(q_len(now.req_cll_p_transforfunction)==0))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 247: // STATE 36 - model:270 - [req_cll_p_transforfunction!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][36] = 1;
+		if (q_full(now.req_cll_p_transforfunction))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.req_cll_p_transforfunction);
+		sprintf(simtmp, "%d", ((int)((P3 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.req_cll_p_transforfunction, 0, ((int)((P3 *)this)->_pid), 1);
+		if (q_zero(now.req_cll_p_transforfunction)) { boq = now.req_cll_p_transforfunction; };
+		_m = 2; goto P999; /* 0 */
+	case 248: // STATE 37 - model:271 - [{c_code83}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][37] = 1;
+		/* c_code83 */
+		{ 
+		sv_save(); now.par0_transforfunction = Pp_calPID->output;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 249: // STATE 38 - model:272 - [exc_cll_p_transforfunction!_pid] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][38] = 1;
+		if (q_full(now.exc_cll_p_transforfunction))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.exc_cll_p_transforfunction);
+		sprintf(simtmp, "%d", ((int)((P3 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.exc_cll_p_transforfunction, 0, ((int)((P3 *)this)->_pid), 1);
+		if (q_zero(now.exc_cll_p_transforfunction)) { boq = now.exc_cll_p_transforfunction; };
+		_m = 2; goto P999; /* 0 */
+	case 250: // STATE 40 - model:274 - [ret_p_transforfunction?eval(_pid)] (0:0:0 - 1)
+		reached[3][40] = 1;
+		if (q_zero(now.ret_p_transforfunction))
+		{	if (boq != now.ret_p_transforfunction) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.ret_p_transforfunction) == 0) continue;
+
+		XX=1;
+		if (((int)((P3 *)this)->_pid) != qrecv(now.ret_p_transforfunction, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.ret_p_transforfunction-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.ret_p_transforfunction, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.ret_p_transforfunction);
+		sprintf(simtmp, "%d", ((int)((P3 *)this)->_pid)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.ret_p_transforfunction))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 251: // STATE 41 - model:275 - [{c_code84}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][41] = 1;
+		/* c_code84 */
+		{ 
+		sv_save(); Pp_calPID->output= now.res_p_transforfunction; now.lck_p_transforfunction_ret = 0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 252: // STATE 42 - model:276 - [{c_code85}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][42] = 1;
+		/* c_code85 */
+		{ 
+		sv_save(); Pp_calPID->preverror=Pp_calPID->error;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 253: // STATE 43 - model:277 - [(!(lck_p_calPID_ret))] (46:0:1 - 1)
+		IfNotBlocked
+		reached[3][43] = 1;
+		if (!( !(((int)now.lck_p_calPID_ret))))
+			continue;
+		/* merge: lck_p_calPID_ret = 1(0, 44, 46) */
+		reached[3][44] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_calPID_ret);
+		now.lck_p_calPID_ret = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_calPID_ret", ((int)now.lck_p_calPID_ret));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 254: // STATE 46 - model:278 - [{c_code86}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][46] = 1;
+		/* c_code86 */
+		{ 
+		sv_save(); now.res_p_calPID = (long) Pp_calPID->output;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 255: // STATE 49 - model:280 - [ret_p_calPID!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[3][49] = 1;
+		if (q_full(now.ret_p_calPID))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_calPID);
+		sprintf(simtmp, "%d", ((int)((P3 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_calPID, 0, ((int)((P3 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_calPID)) { boq = now.ret_p_calPID; };
+		_m = 2; goto P999; /* 0 */
+
+		 /* PROC p_transforfunction */
+	case 256: // STATE 1 - model:221 - [((nempty(req_cll_p_transforfunction)&&!(lck_p_transforfunction)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[2][1] = 1;
+		if (!(((q_len(now.req_cll_p_transforfunction)>0)&& !(((int)now.lck_p_transforfunction)))))
+			continue;
+		/* merge: lck_p_transforfunction = 1(0, 2, 3) */
+		reached[2][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_transforfunction);
+		now.lck_p_transforfunction = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_transforfunction", ((int)now.lck_p_transforfunction));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 257: // STATE 3 - model:222 - [req_cll_p_transforfunction?lck_id] (0:0:1 - 1)
+		reached[2][3] = 1;
+		if (q_zero(now.req_cll_p_transforfunction))
+		{	if (boq != now.req_cll_p_transforfunction) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_transforfunction) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P2 *)this)->lck_id);
+		;
+		((P2 *)this)->lck_id = qrecv(now.req_cll_p_transforfunction, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_transforfunction:lck_id", ((int)((P2 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_transforfunction);
+		sprintf(simtmp, "%d", ((int)((P2 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_transforfunction))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 258: // STATE 4 - model:222 - [exc_cll_p_transforfunction?eval(lck_id)] (0:0:0 - 1)
+		reached[2][4] = 1;
+		if (q_zero(now.exc_cll_p_transforfunction))
+		{	if (boq != now.exc_cll_p_transforfunction) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_transforfunction) == 0) continue;
+
+		XX=1;
+		if (((int)((P2 *)this)->lck_id) != qrecv(now.exc_cll_p_transforfunction, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_transforfunction-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_transforfunction, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_transforfunction);
+		sprintf(simtmp, "%d", ((int)((P2 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_transforfunction))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 259: // STATE 5 - model:223 - [{c_code59}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[2][5] = 1;
+		/* c_code59 */
+		{ 
+		sv_save(); Pp_transforfunction->s = now.par0_transforfunction;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 260: // STATE 6 - model:224 - [lck_p_transforfunction = 0] (0:0:1 - 1)
+		IfNotBlocked
+		reached[2][6] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_transforfunction);
+		now.lck_p_transforfunction = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_transforfunction", ((int)now.lck_p_transforfunction));
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 261: // STATE 8 - model:226 - [(!(lck_p_transforfunction_ret))] (11:0:1 - 1)
+		IfNotBlocked
+		reached[2][8] = 1;
+		if (!( !(((int)now.lck_p_transforfunction_ret))))
+			continue;
+		/* merge: lck_p_transforfunction_ret = 1(0, 9, 11) */
+		reached[2][9] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_transforfunction_ret);
+		now.lck_p_transforfunction_ret = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_transforfunction_ret", ((int)now.lck_p_transforfunction_ret));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 262: // STATE 11 - model:227 - [{c_code60}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[2][11] = 1;
+		/* c_code60 */
+		{ 
+		sv_save(); now.res_p_transforfunction = (long) (1/((1000*Pp_transforfunction->s)+50));  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 263: // STATE 14 - model:229 - [ret_p_transforfunction!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[2][14] = 1;
+		if (q_full(now.ret_p_transforfunction))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_transforfunction);
+		sprintf(simtmp, "%d", ((int)((P2 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_transforfunction, 0, ((int)((P2 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_transforfunction)) { boq = now.ret_p_transforfunction; };
+		_m = 2; goto P999; /* 0 */
+
+		 /* PROC p_initTargetVehicle */
+	case 264: // STATE 1 - model:177 - [((nempty(req_cll_p_initTargetVehicle)&&!(lck_p_initTargetVehicle)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[1][1] = 1;
+		if (!(((q_len(now.req_cll_p_initTargetVehicle)>0)&& !(((int)now.lck_p_initTargetVehicle)))))
+			continue;
+		/* merge: lck_p_initTargetVehicle = 1(0, 2, 3) */
+		reached[1][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_initTargetVehicle);
+		now.lck_p_initTargetVehicle = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_initTargetVehicle", ((int)now.lck_p_initTargetVehicle));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 265: // STATE 3 - model:178 - [req_cll_p_initTargetVehicle?lck_id] (0:0:1 - 1)
+		reached[1][3] = 1;
+		if (q_zero(now.req_cll_p_initTargetVehicle))
+		{	if (boq != now.req_cll_p_initTargetVehicle) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_initTargetVehicle) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P1 *)this)->lck_id);
+		;
+		((P1 *)this)->lck_id = qrecv(now.req_cll_p_initTargetVehicle, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_initTargetVehicle:lck_id", ((int)((P1 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_initTargetVehicle);
+		sprintf(simtmp, "%d", ((int)((P1 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_initTargetVehicle))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 266: // STATE 4 - model:178 - [exc_cll_p_initTargetVehicle?eval(lck_id)] (7:0:1 - 1)
+		reached[1][4] = 1;
+		if (q_zero(now.exc_cll_p_initTargetVehicle))
+		{	if (boq != now.exc_cll_p_initTargetVehicle) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_initTargetVehicle) == 0) continue;
+
+		XX=1;
+		if (((int)((P1 *)this)->lck_id) != qrecv(now.exc_cll_p_initTargetVehicle, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_initTargetVehicle-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_initTargetVehicle, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_initTargetVehicle);
+		sprintf(simtmp, "%d", ((int)((P1 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_initTargetVehicle))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		/* merge: lck_p_initTargetVehicle = 0(0, 5, 7) */
+		reached[1][5] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_initTargetVehicle);
+		now.lck_p_initTargetVehicle = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_initTargetVehicle", ((int)now.lck_p_initTargetVehicle));
+#endif
+		;
+		_m = 4; goto P999; /* 1 */
+	case 267: // STATE 7 - model:181 - [{c_code31}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][7] = 1;
+		/* c_code31 */
+		{ 
+		sv_save(); now.targetvehicle.accmode=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 268: // STATE 8 - model:182 - [{c_code32}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][8] = 1;
+		/* c_code32 */
+		{ 
+		sv_save(); now.targetvehicle.engineOff=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 269: // STATE 9 - model:183 - [{c_code33}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][9] = 1;
+		/* c_code33 */
+		{ 
+		sv_save(); now.targetvehicle.engineOn=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 270: // STATE 10 - model:184 - [{c_code34}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][10] = 1;
+		/* c_code34 */
+		{ 
+		sv_save(); now.targetvehicle.changesGear=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 271: // STATE 11 - model:185 - [{c_code35}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][11] = 1;
+		/* c_code35 */
+		{ 
+		sv_save(); now.targetvehicle.brakepedal=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 272: // STATE 12 - model:186 - [{c_code36}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][12] = 1;
+		/* c_code36 */
+		{ 
+		sv_save(); now.targetvehicle.currentspeed=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 273: // STATE 13 - model:187 - [{c_code37}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][13] = 1;
+		/* c_code37 */
+		{ 
+		sv_save(); now.targetvehicle.maxSpeed=240;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 274: // STATE 14 - model:188 - [{c_code38}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][14] = 1;
+		/* c_code38 */
+		{ 
+		sv_save(); now.targetvehicle.ignition=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 275: // STATE 15 - model:189 - [{c_code39}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][15] = 1;
+		/* c_code39 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[0]=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 276: // STATE 16 - model:190 - [{c_code40}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][16] = 1;
+		/* c_code40 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[1]=(3.3*2.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 277: // STATE 17 - model:191 - [{c_code41}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][17] = 1;
+		/* c_code41 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[2]=(1.9*5.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 278: // STATE 18 - model:192 - [{c_code42}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][18] = 1;
+		/* c_code42 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[3]=(2.6*2.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 279: // STATE 19 - model:193 - [{c_code43}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][19] = 1;
+		/* c_code43 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[4]=(2*1.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 280: // STATE 20 - model:194 - [{c_code44}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][20] = 1;
+		/* c_code44 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[5]=(1*1.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 281: // STATE 21 - model:195 - [{c_code45}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][21] = 1;
+		/* c_code45 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[6]=(1*2.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 282: // STATE 22 - model:196 - [{c_code46}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][22] = 1;
+		/* c_code46 */
+		{ 
+		sv_save(); now.targetvehicle.gearRatio[7]=(1*2.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 283: // STATE 23 - model:197 - [{c_code47}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][23] = 1;
+		/* c_code47 */
+		{ 
+		sv_save(); now.targetvehicle.enginerpmRedLine=2318.26;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 284: // STATE 24 - model:198 - [{c_code48}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][24] = 1;
+		/* c_code48 */
+		{ 
+		sv_save(); now.targetvehicle.shift=0.75;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 285: // STATE 25 - model:199 - [{c_code49}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][25] = 1;
+		/* c_code49 */
+		{ 
+		sv_save(); now.targetvehicle.shiftmargin=0.95;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 286: // STATE 26 - model:200 - [{c_code50}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][26] = 1;
+		/* c_code50 */
+		{ 
+		sv_save(); now.targetvehicle.wheelRadius[0]=0.1023;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 287: // STATE 27 - model:201 - [{c_code51}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][27] = 1;
+		/* c_code51 */
+		{ 
+		sv_save(); now.targetvehicle.wheelRadius[1]=0.2023;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 288: // STATE 28 - model:202 - [{c_code52}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][28] = 1;
+		/* c_code52 */
+		{ 
+		sv_save(); now.targetvehicle.wheelRadius[2]=0.2121;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 289: // STATE 29 - model:203 - [{c_code53}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][29] = 1;
+		/* c_code53 */
+		{ 
+		sv_save(); now.targetvehicle.wheelRadius[3]=0.2121;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 290: // STATE 30 - model:204 - [{c_code54}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][30] = 1;
+		/* c_code54 */
+		{ 
+		sv_save(); now.targetvehicle.currentGear=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 291: // STATE 31 - model:205 - [{c_code55}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][31] = 1;
+		/* c_code55 */
+		{ 
+		sv_save(); now.targetvehicle.maxThrottle=10;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 292: // STATE 32 - model:206 - [{c_code56}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][32] = 1;
+		/* c_code56 */
+		{ 
+		sv_save(); now.targetvehicle.airResistance=(now.accvehicle.maxSpeed/now.accvehicle.maxThrottle);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 293: // STATE 33 - model:207 - [{c_code57}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][33] = 1;
+		/* c_code57 */
+		{ 
+		sv_save(); now.targetvehicle.ticksPerSecond=5;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 294: // STATE 34 - model:208 - [{c_code58}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][34] = 1;
+		/* c_code58 */
+		{ 
+		sv_save(); now.targetvehicle.distance=15;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 295: // STATE 36 - model:210 - [ret_p_initTargetVehicle!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][36] = 1;
+		if (q_full(now.ret_p_initTargetVehicle))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_initTargetVehicle);
+		sprintf(simtmp, "%d", ((int)((P1 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_initTargetVehicle, 0, ((int)((P1 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_initTargetVehicle)) { boq = now.ret_p_initTargetVehicle; };
+		_m = 2; goto P999; /* 0 */
+
+		 /* PROC p_initACCVehicle */
+	case 296: // STATE 1 - model:136 - [((nempty(req_cll_p_initACCVehicle)&&!(lck_p_initACCVehicle)))] (3:0:1 - 1)
+		IfNotBlocked
+		reached[0][1] = 1;
+		if (!(((q_len(now.req_cll_p_initACCVehicle)>0)&& !(((int)now.lck_p_initACCVehicle)))))
+			continue;
+		/* merge: lck_p_initACCVehicle = 1(0, 2, 3) */
+		reached[0][2] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_initACCVehicle);
+		now.lck_p_initACCVehicle = 1;
+#ifdef VAR_RANGES
+		logval("lck_p_initACCVehicle", ((int)now.lck_p_initACCVehicle));
+#endif
+		;
+		_m = 3; goto P999; /* 1 */
+	case 297: // STATE 3 - model:137 - [req_cll_p_initACCVehicle?lck_id] (0:0:1 - 1)
+		reached[0][3] = 1;
+		if (q_zero(now.req_cll_p_initACCVehicle))
+		{	if (boq != now.req_cll_p_initACCVehicle) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.req_cll_p_initACCVehicle) == 0) continue;
+
+		XX=1;
+		(trpt+1)->bup.oval = ((int)((P0 *)this)->lck_id);
+		;
+		((P0 *)this)->lck_id = qrecv(now.req_cll_p_initACCVehicle, XX-1, 0, 1);
+#ifdef VAR_RANGES
+		logval("p_initACCVehicle:lck_id", ((int)((P0 *)this)->lck_id));
+#endif
+		;
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.req_cll_p_initACCVehicle);
+		sprintf(simtmp, "%d", ((int)((P0 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.req_cll_p_initACCVehicle))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		_m = 4; goto P999; /* 0 */
+	case 298: // STATE 4 - model:137 - [exc_cll_p_initACCVehicle?eval(lck_id)] (7:0:1 - 1)
+		reached[0][4] = 1;
+		if (q_zero(now.exc_cll_p_initACCVehicle))
+		{	if (boq != now.exc_cll_p_initACCVehicle) continue;
+		} else
+		{	if (boq != -1) continue;
+		}
+		if (q_len(now.exc_cll_p_initACCVehicle) == 0) continue;
+
+		XX=1;
+		if (((int)((P0 *)this)->lck_id) != qrecv(now.exc_cll_p_initACCVehicle, 0, 0, 0)) continue;
+		if (q_flds[((Q0 *)qptr(now.exc_cll_p_initACCVehicle-1))->_t] != 1)
+			Uerror("wrong nr of msg fields in rcv");
+		;
+		qrecv(now.exc_cll_p_initACCVehicle, XX-1, 0, 1);
+		
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[32];
+			sprintf(simvals, "%d?", now.exc_cll_p_initACCVehicle);
+		sprintf(simtmp, "%d", ((int)((P0 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		if (q_zero(now.exc_cll_p_initACCVehicle))
+		{	boq = -1;
+#ifndef NOFAIR
+			if (fairness
+			&& !(trpt->o_pm&32)
+			&& (now._a_t&2)
+			&&  now._cnt[now._a_t&1] == II+2)
+			{	now._cnt[now._a_t&1] -= 1;
+#ifdef VERI
+				if (II == 1)
+					now._cnt[now._a_t&1] = 1;
+#endif
+#ifdef DEBUG
+			printf("%3d: proc %d fairness ", depth, II);
+			printf("Rule 2: --cnt to %d (%d)\n",
+				now._cnt[now._a_t&1], now._a_t);
+#endif
+				trpt->o_pm |= (32|64);
+			}
+#endif
+
+		};
+		/* merge: lck_p_initACCVehicle = 0(0, 5, 7) */
+		reached[0][5] = 1;
+		(trpt+1)->bup.oval = ((int)now.lck_p_initACCVehicle);
+		now.lck_p_initACCVehicle = 0;
+#ifdef VAR_RANGES
+		logval("lck_p_initACCVehicle", ((int)now.lck_p_initACCVehicle));
+#endif
+		;
+		_m = 4; goto P999; /* 1 */
+	case 299: // STATE 7 - model:140 - [{c_code3}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][7] = 1;
+		/* c_code3 */
+		{ 
+		sv_save(); now.accvehicle.accmode=3;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 300: // STATE 8 - model:141 - [{c_code4}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][8] = 1;
+		/* c_code4 */
+		{ 
+		sv_save(); now.accvehicle.engineOff=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 301: // STATE 9 - model:142 - [{c_code5}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][9] = 1;
+		/* c_code5 */
+		{ 
+		sv_save(); now.accvehicle.engineOn=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 302: // STATE 10 - model:143 - [{c_code6}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][10] = 1;
+		/* c_code6 */
+		{ 
+		sv_save(); now.accvehicle.changesGear=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 303: // STATE 11 - model:144 - [{c_code7}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][11] = 1;
+		/* c_code7 */
+		{ 
+		sv_save(); now.accvehicle.brakepedal=1;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 304: // STATE 12 - model:145 - [{c_code8}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][12] = 1;
+		/* c_code8 */
+		{ 
+		sv_save(); now.accvehicle.currentspeed=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 305: // STATE 13 - model:146 - [{c_code9}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][13] = 1;
+		/* c_code9 */
+		{ 
+		sv_save(); now.accvehicle.maxSpeed=240;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 306: // STATE 14 - model:147 - [{c_code10}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][14] = 1;
+		/* c_code10 */
+		{ 
+		sv_save(); now.accvehicle.ignition=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 307: // STATE 15 - model:148 - [{c_code11}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][15] = 1;
+		/* c_code11 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[0]=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 308: // STATE 16 - model:149 - [{c_code12}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][16] = 1;
+		/* c_code12 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[1]=(3.9*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 309: // STATE 17 - model:150 - [{c_code13}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][17] = 1;
+		/* c_code13 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[2]=(2.9*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 310: // STATE 18 - model:151 - [{c_code14}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][18] = 1;
+		/* c_code14 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[3]=(2.3*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 311: // STATE 19 - model:152 - [{c_code15}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][19] = 1;
+		/* c_code15 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[4]=(1.87*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 312: // STATE 20 - model:153 - [{c_code16}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][20] = 1;
+		/* c_code16 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[5]=(1.68*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 313: // STATE 21 - model:154 - [{c_code17}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][21] = 1;
+		/* c_code17 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[6]=(1.54*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 314: // STATE 22 - model:155 - [{c_code18}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][22] = 1;
+		/* c_code18 */
+		{ 
+		sv_save(); now.accvehicle.gearRatio[7]=(1.46*4.5);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 315: // STATE 23 - model:156 - [{c_code19}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][23] = 1;
+		/* c_code19 */
+		{ 
+		sv_save(); now.accvehicle.enginerpmRedLine=1958.26;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 316: // STATE 24 - model:157 - [{c_code20}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][24] = 1;
+		/* c_code20 */
+		{ 
+		sv_save(); now.accvehicle.shift=0.95;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 317: // STATE 25 - model:158 - [{c_code21}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][25] = 1;
+		/* c_code21 */
+		{ 
+		sv_save(); now.accvehicle.shiftmargin=0.95;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 318: // STATE 26 - model:159 - [{c_code22}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][26] = 1;
+		/* c_code22 */
+		{ 
+		sv_save(); now.accvehicle.wheelRadius[0]=0.3024;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 319: // STATE 27 - model:160 - [{c_code23}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][27] = 1;
+		/* c_code23 */
+		{ 
+		sv_save(); now.accvehicle.wheelRadius[1]=0.3024;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 320: // STATE 28 - model:161 - [{c_code24}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][28] = 1;
+		/* c_code24 */
+		{ 
+		sv_save(); now.accvehicle.wheelRadius[2]=0.3151;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 321: // STATE 29 - model:162 - [{c_code25}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][29] = 1;
+		/* c_code25 */
+		{ 
+		sv_save(); now.accvehicle.wheelRadius[3]=0.3151;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 322: // STATE 30 - model:163 - [{c_code26}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][30] = 1;
+		/* c_code26 */
+		{ 
+		sv_save(); now.accvehicle.currentGear=0;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 323: // STATE 31 - model:164 - [{c_code27}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][31] = 1;
+		/* c_code27 */
+		{ 
+		sv_save(); now.accvehicle.maxThrottle=10;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 324: // STATE 32 - model:165 - [{c_code28}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][32] = 1;
+		/* c_code28 */
+		{ 
+		sv_save(); now.accvehicle.airResistance=(now.accvehicle.maxSpeed/now.accvehicle.maxThrottle);  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 325: // STATE 33 - model:166 - [{c_code29}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][33] = 1;
+		/* c_code29 */
+		{ 
+		sv_save(); now.accvehicle.ticksPerSecond=5;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 326: // STATE 34 - model:167 - [{c_code30}] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][34] = 1;
+		/* c_code30 */
+		{ 
+		sv_save(); now.accvehicle.distance=15;  }
+
+#if defined(C_States) && (HAS_TRACK==1)
+		c_update((uchar *) &(now.c_state[0]));
+#endif
+;
+		_m = 3; goto P999; /* 0 */
+	case 327: // STATE 36 - model:169 - [ret_p_initACCVehicle!lck_id] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][36] = 1;
+		if (q_full(now.ret_p_initACCVehicle))
+			continue;
+#ifdef HAS_CODE
+		if (readtrail && gui) {
+			char simtmp[64];
+			sprintf(simvals, "%d!", now.ret_p_initACCVehicle);
+		sprintf(simtmp, "%d", ((int)((P0 *)this)->lck_id)); strcat(simvals, simtmp);		}
+#endif
+		
+		qsend(now.ret_p_initACCVehicle, 0, ((int)((P0 *)this)->lck_id), 1);
+		if (q_zero(now.ret_p_initACCVehicle)) { boq = now.ret_p_initACCVehicle; };
+		_m = 2; goto P999; /* 0 */
+	case  _T5:	/* np_ */
+		if (!((!(trpt->o_pm&4) && !(trpt->tau&128))))
+			continue;
+		/* else fall through */
+	case  _T2:	/* true */
+		_m = 3; goto P999;
+#undef rand
+	}
+

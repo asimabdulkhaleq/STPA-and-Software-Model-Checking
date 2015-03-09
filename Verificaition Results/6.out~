@@ -1,0 +1,59 @@
+verification result:
+/home/asim/tcl/bin/Spin/Src6.4.3/spin -a  model
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
+./pan -m10000   -N SSR1
+Pid: 4791
+warning: only one claim defined, -N ignored
+warning: never claim + accept labels requires -a flag to fully verify
+warning: for p.o. reduction to be valid the never claim must be stutter-invariant
+(never claims generated from LTL formulae are stutter-invariant)
+Depth=    4922 States=    1e+06 Transitions= 1.62e+06 Nodes=  107835 Memory=   202.794	t=      136 R=   7e+03
+Depth=    4922 States=    2e+06 Transitions= 3.25e+06 Nodes=  198814 Memory=   266.271	t=      293 R=   7e+03
+Depth=    4922 States=    3e+06 Transitions= 4.88e+06 Nodes=  292816 Memory=   335.216	t=      461 R=   7e+03
+Depth=    4922 States=    4e+06 Transitions=  6.5e+06 Nodes=  386228 Memory=   400.060	t=      626 R=   6e+03
+Depth=    4922 States=    5e+06 Transitions= 8.13e+06 Nodes=  481305 Memory=   466.466	t=      785 R=   6e+03
+Depth=    4922 States=    6e+06 Transitions= 9.75e+06 Nodes=  573794 Memory=   530.919	t=      944 R=   6e+03
+Depth=    4964 States=    7e+06 Transitions= 1.14e+07 Nodes=  666503 Memory=   629.942	t=  1.1e+03 R=   6e+03
+Depth=    4964 States=    8e+06 Transitions= 1.33e+07 Nodes=  722848 Memory=   782.677	t= 1.25e+03 R=   6e+03
+Depth=    4964 States=    9e+06 Transitions= 1.51e+07 Nodes=  774111 Memory=   935.021	t= 1.41e+03 R=   6e+03
+pan: reached -DMEMLIM bound
+	1.07362e+09 bytes used
+	204800 bytes more needed
+	1.07374e+09 bytes limit
+hint: to reduce memory, recompile with
+  -DBITSTATE # supertrace, approximation
+
+(Spin Version 6.4.3 -- 16 December 2014)
+Warning: Search not completed
+	+ Partial Order Reduction
+	+ Compression
+	+ Graph Encoding (-DMA=1520)
+
+Full statespace search for:
+	never claim         	+ (never_0)
+	assertion violations	+ (if within scope of claim)
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	- (disabled by never claim)
+
+State-vector 1376 byte, depth reached 4964, errors: 0
+  9584017 states, stored
+  6612768 states, matched
+ 16196785 transitions (= stored+matched)
+  1903693 atomic steps
+
+Stats on memory usage (in Megabytes):
+12832.603	equivalent memory usage for states (stored*(State-vector + overhead))
+  895.284	actual memory usage for states (compression: 6.98%)
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+    1.653	memory lost to fragmentation
+ 1023.888	total actual memory usage
+
+
+nr of templates: [ 0:globals 1:chans 2:procs ]
+collapse counts: [ 0:796981 2:1 3:33 4:33 5:13 6:248 7:1181 8:34467 9:51 10:7 11:316 12:4 ]
+
+pan: elapsed time 1.5e+03 seconds
+No errors found -- did you verify all claims?
+
+

@@ -1,0 +1,264 @@
+$SSR_{2,1}$ = [] ((distance $<=$ safe distance $\&\&$ radarData ==Received $\&\&$ ACCMode ==cruise ) $-$> 
+(deccelerationSignal)) 
+
+/home/asim/tcl/bin/Spin/Src6.4.3/spin -a  model
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
+./pan -m10000   -c1 -N SSR4
+Pid: 6065
+warning: only one claim defined, -N ignored
+warning: never claim + accept labels requires -a flag to fully verify
+warning: for p.o. reduction to be valid the never claim must be stutter-invariant
+(never claims generated from LTL formulae are stutter-invariant)
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Compression
+	+ Graph Encoding (-DMA=1520)
+
+Full statespace search for:
+	never claim         	+ (never_0)
+	assertion violations	+ (if within scope of claim)
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	- (disabled by never claim)
+
+State-vector 1376 byte, depth reached 484, errors: 0
+MA stats: -DMA=26 is sufficient
+Minimized Automaton:	  7896 nodes and 128732 edges
+   157289 states, stored
+   137575 states, matched
+   294864 transitions (= stored+matched)
+     6324 atomic steps
+
+Stats on memory usage (in Megabytes):
+  210.603	equivalent memory usage for states (stored*(State-vector + overhead))
+   33.159	actual memory usage for states (compression: 15.74%)
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  161.583	total actual memory usage
+
+
+nr of templates: [ 0:globals 1:chans 2:procs ]
+collapse counts: [ 0:31645 2:1 3:33 4:33 5:1 6:1 7:1 8:1 9:21 10:7 11:72 12:4 ]
+unreached in claim never_0
+	neverpq0.pml:7, state 6, "-end-"
+	(1 of 6 states)
+unreached in proctype p_initACCVehicle
+	model:226, state 38, "-end-"
+	(1 of 38 states)
+unreached in proctype p_initTargetVehicle
+	model:267, state 38, "-end-"
+	(1 of 38 states)
+unreached in proctype p_transforfunction
+	model:277, state 3, "req_cll_p_transforfunction?lck_id"
+	model:277, state 4, "exc_cll_p_transforfunction?eval(lck_id)"
+	model:278, state 5, " Pp_transforfunction->s = now.par0_transforfunction; "
+	model:279, state 6, "lck_p_transforfunction = 0"
+	model:281, state 10, "(!(lck_p_transforfunction_ret))"
+	model:282, state 11, " now.res_p_transforfunction = (long) (1/((1000*Pp_transforfunction->s)+50)); "
+	model:284, state 14, "ret_p_transforfunction!lck_id"
+	model:286, state 16, "-end-"
+	(8 of 16 states)
+unreached in proctype p_calPID
+	model:293, state 3, "req_cll_p_calPID?lck_id"
+	model:293, state 4, "exc_cll_p_calPID?eval(lck_id)"
+	model:294, state 5, " Pp_calPID->diff = now.par0_calPID; "
+	model:295, state 6, "lck_p_calPID = 0"
+	model:297, state 8, " Pp_calPID->epsilon=0.01; "
+	model:298, state 9, " Pp_calPID->deltatime=0.01; "
+	model:299, state 10, " Pp_calPID->maxvalue=200; "
+	model:300, state 11, " Pp_calPID->minvalue=0; "
+	model:301, state 12, " Pp_calPID->kp=2000; "
+	model:302, state 13, " Pp_calPID->ki=80; "
+	model:303, state 14, " Pp_calPID->kd=80; "
+	model:304, state 15, " Pp_calPID->preverror=0; "
+	model:305, state 16, " Pp_calPID->integralgain=0; "
+	model:306, state 17, " Pp_calPID->error=Pp_calPID->diff; "
+	model:309, state 19, " Pp_calPID->integralgain+=(Pp_calPID->error*Pp_calPID->deltatime); "
+	model:308, state 21, "( (Pp_calPID->error>Pp_calPID->epsilon) )"
+	model:308, state 21, "( !(Pp_calPID->error>Pp_calPID->epsilon) )"
+	model:312, state 23, " Pp_calPID->derivativegain+=((Pp_calPID->error-Pp_calPID->preverror)/Pp_calPID->deltatime); "
+	model:313, state 24, " Pp_calPID->output=(((Pp_calPID->kp*Pp_calPID->error)+(Pp_calPID->ki*Pp_calPID->integralgain))+(Pp_calPID->kd*Pp_calPID->derivativegain)); "
+	model:316, state 26, " Pp_calPID->output=Pp_calPID->maxvalue; "
+	model:320, state 29, " Pp_calPID->output=Pp_calPID->minvalue; "
+	model:319, state 31, "( (Pp_calPID->output<Pp_calPID->minvalue) )"
+	model:319, state 31, "( !(Pp_calPID->output<Pp_calPID->minvalue) )"
+	model:315, state 33, "( (Pp_calPID->output>Pp_calPID->maxvalue) )"
+	model:315, state 33, "( !(Pp_calPID->output>Pp_calPID->maxvalue) )"
+	model:325, state 36, "req_cll_p_transforfunction!_pid"
+	model:326, state 37, " now.par0_transforfunction = Pp_calPID->output; "
+	model:327, state 38, "exc_cll_p_transforfunction!_pid"
+	model:325, state 39, "(((lck_p_transforfunction==0)&&empty(req_cll_p_transforfunction)))"
+	model:329, state 40, "ret_p_transforfunction?eval(_pid)"
+	model:330, state 41, " Pp_calPID->output= now.res_p_transforfunction; now.lck_p_transforfunction_ret = 0; "
+	model:331, state 42, " Pp_calPID->preverror=Pp_calPID->error; "
+	model:332, state 45, "(!(lck_p_calPID_ret))"
+	model:333, state 46, " now.res_p_calPID = (long) Pp_calPID->output; "
+	model:335, state 49, "ret_p_calPID!lck_id"
+	model:337, state 51, "-end-"
+	(33 of 51 states)
+unreached in proctype p_adjustcarspeed
+	model:344, state 3, "req_cll_p_adjustcarspeed?lck_id"
+	model:344, state 4, "exc_cll_p_adjustcarspeed?eval(lck_id)"
+	model:345, state 5, " Pp_adjustcarspeed->distance = now.par2_adjustcarspeed; "
+	model:346, state 6, " Pp_adjustcarspeed->deltaX = now.par1_adjustcarspeed; "
+	model:347, state 7, " Pp_adjustcarspeed->vehicleSpeed = now.par0_adjustcarspeed; "
+	model:348, state 8, "lck_p_adjustcarspeed = 0"
+	model:350, state 10, " Pp_adjustcarspeed->tspeed=0; "
+	model:353, state 12, " Pp_adjustcarspeed->tspeed=sqrt(((Pp_adjustcarspeed->vehicleSpeed*Pp_adjustcarspeed->vehicleSpeed)+abs(((2*(-now.accelerationRatio))*abs(((Pp_adjustcarspeed->deltaX+now.safeDistance)-Pp_adjustcarspeed->distance)))))); "
+	model:357, state 15, " Pp_adjustcarspeed->tspeed=sqrt(((Pp_adjustcarspeed->vehicleSpeed*Pp_adjustcarspeed->vehicleSpeed)+abs(((2*(-now.accelerationRatio))*abs((now.safeDistance-Pp_adjustcarspeed->distance)))))); "
+	model:361, state 18, " Pp_adjustcarspeed->tspeed=(Pp_adjustcarspeed->vehicleSpeed+(now.accelerationRatio*now.timegap)); "
+	model:360, state 20, "( (now.accOperation==3) )"
+	model:360, state 20, "( !(now.accOperation==3) )"
+	model:356, state 22, "( (now.accOperation==2) )"
+	model:356, state 22, "( !(now.accOperation==2) )"
+	model:352, state 24, "( (now.accOperation==1) )"
+	model:352, state 24, "( !(now.accOperation==1) )"
+	model:366, state 28, "(!(lck_p_adjustcarspeed_ret))"
+	model:367, state 29, " now.res_p_adjustcarspeed = (long) Pp_adjustcarspeed->tspeed; "
+	model:369, state 32, "ret_p_adjustcarspeed!lck_id"
+	model:371, state 34, "-end-"
+	(17 of 34 states)
+unreached in proctype p_controlSpeed
+	model:378, state 3, "req_cll_p_controlSpeed?lck_id"
+	model:378, state 4, "exc_cll_p_controlSpeed?eval(lck_id)"
+	model:379, state 5, " Pp_controlSpeed->frontDistance = now.par2_controlSpeed; "
+	model:380, state 6, " Pp_controlSpeed->frontSpeed = now.par1_controlSpeed; "
+	model:381, state 7, " Pp_controlSpeed->currentSpeed = now.par0_controlSpeed; "
+	model:382, state 8, "lck_p_controlSpeed = 0"
+	model:384, state 10, " Pp_controlSpeed->deltaX=0; "
+	model:385, state 11, " Pp_controlSpeed->targetSpeed=0; "
+	model:386, state 12, " Pp_controlSpeed->setSpeed=0; "
+	model:387, state 13, " Pp_controlSpeed->speed=0; "
+	model:390, state 15, " Pp_controlSpeed->currentSpeed=now.minSpeed; "
+	model:389, state 17, "( (Pp_controlSpeed->currentSpeed==0) )"
+	model:389, state 17, "( !(Pp_controlSpeed->currentSpeed==0) )"
+	model:393, state 19, " Pp_controlSpeed->deltaX=abs((((Pp_controlSpeed->frontSpeed*Pp_controlSpeed->frontSpeed)-(Pp_controlSpeed->currentSpeed*Pp_controlSpeed->currentSpeed))/(2*(-now.accelerationRatio)))); "
+	model:398, state 22, " now.accOperation=1; "
+	model:400, state 24, "req_cll_p_adjustcarspeed!_pid"
+	model:401, state 25, " now.par0_adjustcarspeed = Pp_controlSpeed->currentSpeed; "
+	model:402, state 26, " now.par1_adjustcarspeed = Pp_controlSpeed->deltaX; "
+	model:403, state 27, " now.par2_adjustcarspeed = Pp_controlSpeed->frontDistance; "
+	model:404, state 28, "exc_cll_p_adjustcarspeed!_pid"
+	model:400, state 29, "(((lck_p_adjustcarspeed==0)&&empty(req_cll_p_adjustcarspeed)))"
+	model:406, state 30, "ret_p_adjustcarspeed?eval(_pid)"
+	model:407, state 31, " Pp_controlSpeed->speed= now.res_p_adjustcarspeed; now.lck_p_adjustcarspeed_ret = 0; "
+	model:410, state 33, " Pp_controlSpeed->setSpeed=Pp_controlSpeed->frontSpeed; "
+	model:412, state 35, " Pp_controlSpeed->setSpeed=Pp_controlSpeed->speed; "
+	model:409, state 36, "( (Pp_controlSpeed->frontSpeed>=Pp_controlSpeed->speed) )"
+	model:409, state 36, "( !(Pp_controlSpeed->frontSpeed>=Pp_controlSpeed->speed) )"
+	model:414, state 38, " now.acclerateSignal=1; "
+	model:415, state 39, " now.accvehicle.accmode=2; "
+	model:419, state 42, " now.accOperation=2; "
+	model:421, state 44, "req_cll_p_adjustcarspeed!_pid"
+	model:422, state 45, " now.par0_adjustcarspeed = Pp_controlSpeed->currentSpeed; "
+	model:423, state 46, " now.par1_adjustcarspeed = Pp_controlSpeed->deltaX; "
+	model:424, state 47, " now.par2_adjustcarspeed = Pp_controlSpeed->frontDistance; "
+	model:425, state 48, "exc_cll_p_adjustcarspeed!_pid"
+	model:421, state 49, "(((lck_p_adjustcarspeed==0)&&empty(req_cll_p_adjustcarspeed)))"
+	model:427, state 50, "ret_p_adjustcarspeed?eval(_pid)"
+	model:428, state 51, " Pp_controlSpeed->speed= now.res_p_adjustcarspeed; now.lck_p_adjustcarspeed_ret = 0; "
+	model:431, state 53, " Pp_controlSpeed->setSpeed=now.minSpeed; "
+	model:433, state 55, " Pp_controlSpeed->setSpeed=Pp_controlSpeed->speed; "
+	model:430, state 56, "( (now.minSpeed>=Pp_controlSpeed->speed) )"
+	model:430, state 56, "( !(now.minSpeed>=Pp_controlSpeed->speed) )"
+	model:435, state 58, " now.accvehicle.accmode=2; "
+	model:418, state 60, "( (Pp_controlSpeed->frontDistance<now.safeDistance) )"
+	model:418, state 60, "( !(Pp_controlSpeed->frontDistance<now.safeDistance) )"
+	model:397, state 62, "( ((Pp_controlSpeed->frontDistance<=(Pp_controlSpeed->deltaX+now.safeDistance))&&(Pp_controlSpeed->frontDistance>=now.safeDistance)) )"
+	model:397, state 62, "( !((Pp_controlSpeed->frontDistance<=(Pp_controlSpeed->deltaX+now.safeDistance))&&(Pp_controlSpeed->frontDistance>=now.safeDistance)) )"
+	model:442, state 66, " now.accOperation=3; "
+	model:443, state 67, " Pp_controlSpeed->setSpeed=(Pp_controlSpeed->currentSpeed+(now.accelerationRatio*now.timegap)); "
+	model:444, state 68, " now.accvehicle.accmode=2; "
+	model:441, state 70, "( ((Pp_controlSpeed->frontDistance>(now.safeDistance+Pp_controlSpeed->deltaX))&&(Pp_controlSpeed->frontDistance>=now.safeDistance)) )"
+	model:441, state 70, "( !((Pp_controlSpeed->frontDistance>(now.safeDistance+Pp_controlSpeed->deltaX))&&(Pp_controlSpeed->frontDistance>=now.safeDistance)) )"
+	model:395, state 72, "( (Pp_controlSpeed->frontDistance<=(now.safeDistance+Pp_controlSpeed->deltaX)) )"
+	model:395, state 72, "( !(Pp_controlSpeed->frontDistance<=(now.safeDistance+Pp_controlSpeed->deltaX)) )"
+	model:450, state 75, " Pp_controlSpeed->setSpeed=now.desiredSpeed; "
+	model:452, state 77, " Pp_controlSpeed->setSpeed=Pp_controlSpeed->setSpeed; "
+	model:449, state 78, "( (now.desiredSpeed<=Pp_controlSpeed->speed) )"
+	model:449, state 78, "( !(now.desiredSpeed<=Pp_controlSpeed->speed) )"
+	model:455, state 81, "req_cll_p_calPID!_pid"
+	model:456, state 82, " now.par0_calPID = (Pp_controlSpeed->setSpeed-Pp_controlSpeed->currentSpeed); "
+	model:457, state 83, "exc_cll_p_calPID!_pid"
+	model:455, state 84, "(((lck_p_calPID==0)&&empty(req_cll_p_calPID)))"
+	model:459, state 85, "ret_p_calPID?eval(_pid)"
+	model:460, state 86, " Pp_controlSpeed->targetSpeed= now.res_p_calPID; now.lck_p_calPID_ret = 0; "
+	model:461, state 89, "(!(lck_p_controlSpeed_ret))"
+	model:462, state 90, " now.res_p_controlSpeed = (long) Pp_controlSpeed->targetSpeed; "
+	model:464, state 93, "ret_p_controlSpeed!lck_id"
+	model:466, state 95, "-end-"
+	(60 of 95 states)
+unreached in proctype p_moveCar
+	model:485, state 14, " now.accvehicle.throttle=now.accvehicle.maxThrottle; "
+	model:491, state 21, " now.radarData=1; "
+	model:493, state 23, "req_cll_p_controlSpeed!_pid"
+	model:494, state 24, " now.par0_controlSpeed = now.accvehicle.currentspeed; "
+	model:495, state 25, " now.par1_controlSpeed = now.targetvehicle.speed; "
+	model:496, state 26, " now.par2_controlSpeed = now.targetvehicle.distance; "
+	model:497, state 27, "exc_cll_p_controlSpeed!_pid"
+	model:493, state 28, "(((lck_p_controlSpeed==0)&&empty(req_cll_p_controlSpeed)))"
+	model:499, state 29, "ret_p_controlSpeed?eval(_pid)"
+	model:500, state 30, " now.accvehicle.speed+= now.res_p_controlSpeed; now.lck_p_controlSpeed_ret = 0; "
+	model:503, state 32, " now.accvehicle.speed=now.accvehicle.maxSpeed; "
+	model:507, state 35, " now.accvehicle.speed=now.minSpeed; "
+	model:506, state 37, "( (now.accvehicle.speed<now.minSpeed) )"
+	model:506, state 37, "( !(now.accvehicle.speed<now.minSpeed) )"
+	model:502, state 39, "( (now.accvehicle.speed>now.accvehicle.maxSpeed) )"
+	model:502, state 39, "( !(now.accvehicle.speed>now.accvehicle.maxSpeed) )"
+	model:511, state 41, " now.accvehicle.currentspeed=now.accvehicle.speed; "
+	model:514, state 43, " now.accvehicle.speed=(now.accvehicle.speed+now.accelerationRatio); "
+	model:515, state 44, " now.accvehicle.currentspeed=now.accvehicle.speed; "
+	model:517, state 46, "req_cll_p_controlSpeed!_pid"
+	model:518, state 47, " now.par0_controlSpeed = now.accvehicle.currentspeed; "
+	model:519, state 48, " now.par1_controlSpeed = now.targetvehicle.speed; "
+	model:520, state 49, " now.par2_controlSpeed = now.targetvehicle.distance; "
+	model:521, state 50, "exc_cll_p_controlSpeed!_pid"
+	model:517, state 51, "(((lck_p_controlSpeed==0)&&empty(req_cll_p_controlSpeed)))"
+	model:523, state 52, "ret_p_controlSpeed?eval(_pid)"
+	model:524, state 53, " now.accvehicle.speed+= now.res_p_controlSpeed; now.lck_p_controlSpeed_ret = 0; "
+	model:528, state 57, " now.accvehicle.speed=(now.accvehicle.speed-now.deccelerateRatio); "
+	model:529, state 58, " now.accvehicle.currentspeed=now.accvehicle.speed; "
+	model:531, state 60, "req_cll_p_controlSpeed!_pid"
+	model:532, state 61, " now.par0_controlSpeed = now.accvehicle.currentspeed; "
+	model:533, state 62, " now.par1_controlSpeed = now.targetvehicle.speed; "
+	model:534, state 63, " now.par2_controlSpeed = now.targetvehicle.distance; "
+	model:535, state 64, "exc_cll_p_controlSpeed!_pid"
+	model:531, state 65, "(((lck_p_controlSpeed==0)&&empty(req_cll_p_controlSpeed)))"
+	model:537, state 66, "ret_p_controlSpeed?eval(_pid)"
+	model:538, state 67, " now.accvehicle.speed-= now.res_p_controlSpeed; now.lck_p_controlSpeed_ret = 0; "
+	model:543, state 71, " now.accvehicle.currentspeed=now.desiredSpeed; "
+	model:545, state 73, "req_cll_p_controlSpeed!_pid"
+	model:546, state 74, " now.par0_controlSpeed = now.accvehicle.currentspeed; "
+	model:547, state 75, " now.par1_controlSpeed = now.targetvehicle.speed; "
+	model:548, state 76, " now.par2_controlSpeed = now.targetvehicle.distance; "
+	model:549, state 77, "exc_cll_p_controlSpeed!_pid"
+	model:545, state 78, "(((lck_p_controlSpeed==0)&&empty(req_cll_p_controlSpeed)))"
+	model:551, state 79, "ret_p_controlSpeed?eval(_pid)"
+	model:552, state 80, " now.accvehicle.speed+= now.res_p_controlSpeed; now.lck_p_controlSpeed_ret = 0; "
+	model:559, state 90, " now.accvehicle.speed=now.desiredSpeed; "
+	model:563, state 93, " now.accvehicle.speed=now.minSpeed; "
+	model:558, state 97, "( (now.accvehicle.speed>now.desiredSpeed) )"
+	model:558, state 97, "( !(now.accvehicle.speed>now.desiredSpeed) )"
+	model:575, state 105, " now.accvehicle.speed=now.minSpeed; "
+	model:595, state 128, "-end-"
+	(49 of 128 states)
+unreached in proctype p_radarSensorUnit
+	model:611, state 13, "-end-"
+	(1 of 13 states)
+unreached in proctype p_runSimulator
+	model:671, state 49, " now.accvehicle.currentspeed=now.desiredSpeed; "
+	model:684, state 70, "(!(lck_p_runSimulator_ret))"
+	model:685, state 71, " now.res_p_runSimulator = (long) NULL; "
+	model:687, state 74, "ret_p_runSimulator!lck_id"
+	model:689, state 76, "-end-"
+	(5 of 76 states)
+unreached in proctype p_main
+	model:700, state 7, " getchar(); "
+	model:701, state 10, "(!(lck_p_main_ret))"
+	model:702, state 11, " now.res_p_main = (long) 0; "
+	(3 of 14 states)
+
+pan: elapsed time 22.7 seconds
+No errors found -- did you verify all claims?
+
+

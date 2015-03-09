@@ -1,0 +1,54 @@
+/home/asim/tcl/bin/Spin/Src6.4.3/spin -a  model
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -DSAFETY -DNOCLAIM -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
+./pan -m100000 
+Pid: 14689
+error: max search depth too small
+Depth=   99999 States=    1e+06 Transitions= 1.71e+06 Nodes=  399501 Memory=   304.662	t=      137 R=   7e+03
+Depth=   99999 States=    2e+06 Transitions= 3.49e+06 Nodes=  554867 Memory=   360.326	t=      294 R=   7e+03
+Depth=   99999 States=    3e+06 Transitions= 5.23e+06 Nodes=  834591 Memory=   474.388	t=      453 R=   7e+03
+Depth=   99999 States=    4e+06 Transitions= 6.97e+06 Nodes= 1106842 Memory=   584.544	t=      622 R=   6e+03
+Depth=   99999 States=    5e+06 Transitions= 8.73e+06 Nodes= 1374171 Memory=   692.357	t=      824 R=   6e+03
+Depth=   99999 States=    6e+06 Transitions= 1.05e+07 Nodes= 1689867 Memory=   819.310	t= 1.04e+03 R=   6e+03
+Depth=   99999 States=    7e+06 Transitions= 1.22e+07 Nodes= 1999622 Memory=   941.185	t= 1.25e+03 R=   6e+03
+pan: reached -DMEMLIM bound
+	1.07374e+09 bytes used
+	204800 bytes more needed
+	1.07374e+09 bytes limit
+hint: to reduce memory, recompile with
+  -DBITSTATE # supertrace, approximation
+
+(Spin Version 6.4.3 -- 16 December 2014)
+Warning: Search not completed
+	+ Partial Order Reduction
+	+ Compression
+	+ Graph Encoding (-DMA=1520)
+
+Full statespace search for:
+	never claim         	- (not selected)
+	assertion violations	+
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	+
+
+State-vector 1368 byte, depth reached 99999, errors: 0
+  7642219 states, stored
+  5690791 states, matched
+ 13333010 transitions (= stored+matched)
+  4185065 atomic steps
+
+Stats on memory usage (in Megabytes):
+10174.310	equivalent memory usage for states (stored*(State-vector + overhead))
+  831.241	actual memory usage for states (compression: 8.17%)
+  128.000	memory used for hash table (-w24)
+    5.341	memory used for DFS stack (-m100000)
+   57.832	other (proc and chan stacks)
+    1.584	memory lost to fragmentation
+ 1023.998	total actual memory usage
+
+
+nr of templates: [ 0:globals 1:chans 2:procs ]
+collapse counts: [ 0:617740 2:33 3:33 4:7 5:20934 6:9873 7:91590 8:52 9:7 10:5643 11:4 ]
+
+pan: elapsed time 1.38e+03 seconds
+No errors found -- did you verify all claims?
+
+
