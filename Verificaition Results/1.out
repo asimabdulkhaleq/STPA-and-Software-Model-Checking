@@ -3,8 +3,6 @@ gcc -DMEMLIM=1024 -O2 -DXUSAFE -DNOCLAIM -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVEC
 ./pan -m5000  
 Pid: 13496
 stopped
-error: max search depth too small
-Interrupted
 
 (Spin Version 6.4.3 -- 16 December 2014)
 Warning: Search not completed
