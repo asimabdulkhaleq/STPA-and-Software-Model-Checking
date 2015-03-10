@@ -40,6 +40,7 @@ accept_init:
  
  2. Copy the resutl of command into new file neverpq.pml
  3. open the model.xml file and define the properties p and q such as
+ 
   \#define p c_expr{ Pp_controlSpeed->frontDistance <= now.safeDistance && now.accvehicle.currentspeed >= now.desiredSpeed &&                        now.accMode==cruise}
   \#define q c_expr{now.accOperation==accelerate}
  
