@@ -1,6 +1,3 @@
-#define p2 c_expr { (Pp_controlSpeed->frontDistance <= now.safeDistance && now.accMode==cruise && now.accvehicle.currentspeed <= now.desiredSpeed)}
-20	#define q2 c_expr{now.accOperation==accelerate}
-
 
 /home/asim/tcl/bin/Spin/Src6.4.3/spin -a  model
 gcc -DMEMLIM=1024 -O2 -DXUSAFE -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
