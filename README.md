@@ -5,12 +5,12 @@ Software Engineering Group, Institute of Software Technology
 University of Stuttgart, Germany 
 March, 2015
 
-Prerequisites:
+------------------Prerequisites:---------------------
 
 -Download SPIN (http://spinroot.com/spin/whatispin.html) and Modex (http://spinroot.com/modex/) 
 - If your operation system is windows: You need to install Cygwin (https://www.cygwin.com/)with gcc
 
-To generate the verification model :
+--------------------To generate the verification model --------------------------------
 1- run modex - Y ACCsimulator.c 
 2- run Spin with command line
  $home/asim/Spin/Scr6.4.3/spin -a model
@@ -25,7 +25,7 @@ To generate the verification model :
 The spin will generate the files : pan.m, pan.h and pan
 
 
-To verify the safety requriements which are written in LTL: 
+--------------------To verify the safety requriements which are written in LTL: ----------------
 1- convert LTL into never claim by using SPIN command line 
 $ spin -f 'LTL'
  example: spin -f ' [] (p-> q)
