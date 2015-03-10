@@ -57,7 +57,6 @@ Depth=    4922 States=    9e+06 Transitions= 1.46e+07 Nodes=  910869 Memory=   7
 Depth=    4922 States=    1e+07 Transitions= 1.62e+07 Nodes= 1023396 Memory=   842.957	t= 1.79e+03 R=   6e+03
 Depth=    4922 States=  1.1e+07 Transitions= 1.78e+07 Nodes= 1149776 Memory=   929.089	t= 1.98e+03 R=   6e+03
 stopped
-Interrupted
 
 (Spin Version 6.4.3 -- 16 December 2014)
 Warning: Search not completed
