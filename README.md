@@ -42,6 +42,7 @@ accept_init:
  3. open the model.xml file and define the properties p and q such as
  
   \#define p c_expr{ Pp_controlSpeed->frontDistance <= now.safeDistance && now.accvehicle.currentspeed >= now.desiredSpeed &&                        now.accMode==cruise}
+
   \#define q c_expr{now.accOperation==accelerate}
  
  4. run the spin with command line : 
