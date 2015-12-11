@@ -12,14 +12,15 @@ March, 2015
 
 --------------------To generate the verification model --------------------------------
 
-1- run modex - Y ACCsimulator.c 
+1- run modex - Y ACCsimulator.c  (please note that - Modex does not support the boolean data type)
+
 2- run Spin with command line
  $home/asim/Spin/Scr6.4.3/spin -a model
 3- compile the pan files with command 
 
  gcc -DMEMLIM=1024 -O2 -DXUSAFE -DSAFETY -DNOCLAIM -DSAFETY   -DMA=1520  -DCOLLAPSE  -DVECTORSZ=2048 -w -o pan pan.c -lm
  
--pthread to compile the c code which includes threads.
+- pthread to compile the c code which includes threads.
 -lm option to avoid the warning message of using mathematical library such as sqart and abs.
   pan.m:5952:42: warning: incompatible implicit declaration of built-in function ‘sqrt’ [enabled by default]
 -DVECTORSZ to avoid the small number of memory. 
