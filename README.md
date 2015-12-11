@@ -53,6 +53,7 @@ accept_init:
 $ ./pan -m100000  
  
 5. save the results in separate log file: ./pan -m100000 &>logfile.txt
+6. When SPIN produces a .trail file and we replay the error trail using spin –t, we usually want more information than what SPIN provides by default.
  
 
  
