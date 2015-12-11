@@ -1,7 +1,7 @@
 //****************************************************************************
 //ACCwithStopandGoSimulator.c
 //---------------
-We created this program in C and tested with Lego mindstrom EV3 
+//We created this program in C and tested with Lego mindstrom EV3 
 //****************************************************************************
 //Linux Includes
 //--------------
