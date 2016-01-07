@@ -4,7 +4,7 @@
 This is a simulator of software controller in the Adaptive cruise control system 
 	The ACC simulator runs three threads : move_car, run_Sumilator and monitor RadarData.
 	The simulator is built based on the existing ACC simulator : AutoPlug-3.0 project 
-	Authors: Asim Abdulkahleq, Stefan Wagner 
+	  Authors: Asim Abdulkahleq, Stefan Wagner 
 	 Institute of Software Technology, University of Stuttgart, Germany
 */
 
