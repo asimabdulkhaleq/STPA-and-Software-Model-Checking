@@ -4,6 +4,16 @@
 //We created this program in C and tested with Lego mindstrom EV3 
 //****************************************************************************
 //Linux Includes
+/*
+ This program is free software: you can redistribute it and/or modify
+    it under the terms of the General Public License. 
+This is a simulator of software controller in the Adaptive cruise control system 
+	The ACC simulator runs three threads : move_car, run_Sumilator and monitor RadarData.
+   Authors: Asim Abdulkahleq, Dennis Maseluk, Musike, Stefan Wagner 
+	 Institute of Software Technology, University of Stuttgart, Germany
+*/
+
+
 //--------------
 #include <stdio.h>
 #include <stdlib.h>
